@@ -1,0 +1,35 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.fieldtext.css
+ * Beginning      : 2011-Nov-22
+ * Last modified  : 2012-Jun-18
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.fieldtext.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.fieldtext.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-fieldtext { padding: 0.4em; }
+
+.ui-fieldtext-label { margin-bottom: 0.2em; }
+.ui-fieltext-label-after:after { content: ": "; }

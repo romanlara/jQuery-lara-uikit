@@ -1,0 +1,32 @@
+/* ====================================================================+
+ * File name     : jquery.lara.effect.luminous.css
+ * Beginning     : 2012-Mar-01
+ * Last modified : 2012-Mar-01
+ * 
+ * Author        : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 0.0.0
+ * 
+ * Description   : Codigo grafico para jquery.lara.effects.luminous.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.effects.luminous.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-effects-luminous { margin: 0; padding: 0; float: left; position: absolute; border: 1px solid #FFFFFF; cursor: pointer; }

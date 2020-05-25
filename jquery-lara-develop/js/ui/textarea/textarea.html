@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>textarea</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-11-22 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : textarea.html
+			Comienzo	 	   : 2011-Nov-22
+			Ultima Modificacion: 2012-May-28
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un area de texto.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			/*input.text { margin-bottom: 12px; }*/
+			fieldset { padding:0; border:0; margin-top:25px; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.textarea.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.ui.textarea.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createTextareas() {
+					$("textarea").textarea({
+						colon: true,
+						characterCounter: 250
+					});
+				}
+				
+				createTextareas();
+				
+				$("#textarea-0").textarea("focus");
+				
+				$("h1 span").text($("#textarea-0").data("textarea").version);
+				
+				// ----------------------------------------
+				$("#inhabilitar").button().toggle(function() {
+					$(":ui-textarea").textarea("disable");
+				}, function() {
+					$(":ui-textarea").textarea("enable");
+				});
+				
+				$("#destruir").button().toggle(function() {
+					$(":ui-textarea").textarea("destroy");
+				}, function() {
+					createTextareas();
+				});
+				
+				$("#hideCC").button().toggle(function() {
+					$(":ui-textarea").textarea("option", "hideCC", true);
+				}, function() {
+					$(":ui-textarea").textarea("option", "hideCC", false);
+				});
+				
+				$("#limpiar").button().click(function() {
+					$(":ui-textarea").textarea("clean");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">&Aacute;rea de Texto (jquery.lara.ui.textarea.js) v<span></span></h1>
+			
+			<h2>Escoga lo que le sea preferente.</h2>
+			
+			<form>
+				<fieldset>
+					<label for="textarea-0">&Aacute;rea de texto normal</label>
+					<textarea id="textarea-0"></textarea>
+					<br />
+					<label for="textarea-1">&Aacute;rea de texto normal</label>
+					<textarea id="textarea-1"></textarea>
+					<br />
+					<label for="textarea-2">&Aacute;rea de texto normal</label>
+					<textarea id="textarea-2"></textarea>
+					<br />
+					<label for="textarea-3">&Aacute;rea de texto normal</label>
+					<textarea id="textarea-3"></textarea>
+				</fieldset>
+			</form>
+			<br />
+			<br />
+			<br />
+			
+			<button id="inhabilitar">Inhabilitar | Habilitar</button>
+			<button id="destruir">Destruir | Crear</button>
+			<button id="hideCC">Hide/Show Character Counter</button>
+			<button id="limpiar">Limpiar campos</button>
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DEMO</div>
+		</div>
+	</body>
+</html>

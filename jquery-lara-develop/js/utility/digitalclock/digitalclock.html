@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>digitalclock</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-12-11 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : digitalclock.html
+			Comienzo	 	   : 2011-Dic-11
+			Ultima Modificacion: 2011-Dic-26
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un reloj digital.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+			.notas { width: 40%; font-size: 1.1em; }
+			
+			#clock,
+			#clock2,
+			#clock3 { margin-bottom: 0.2em; padding: 0.4em; width: 50%; font-size: 2em; text-align: center; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.digitalclock.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.utility.digitalclock.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {	
+				function createDigitalclock() {
+					$("#clock").digitalclock({
+						dateFormat: "Today is [dd]th {dayName} {monthName} [yy] - ",
+						displayColons: true,
+						militaryTime: true,
+						displayDate: true
+					});
+					
+					$("#clock2").digitalclock({
+						dateFormat: "Heute ist {dayName}, der [dd] {monthName} [yy] - ",
+						dayNames: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freaitag','Samstag'],
+						monthNames: ['Januar','Februar','März','April','Mai','Juni','Juli','August',
+						             'September','Oktober','November','Dezember'],
+						displayColons: true,
+						militaryTime: true,
+						displayDate: true
+					});
+					
+					$("#clock3").digitalclock({
+						dateFormat: "Hoy es {dayName} [dd] de {monthName} del [yy] - ",
+						dayNames: ['Soles','Lunes','Martes','Mi&eacute;rcoles','Jueves','Viernes','Saturnes'],
+						monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto',
+		        	                 'Septiembre','Octubre','Noviembre','Diciembre'],
+						displayColons: true,
+						militaryTime: true,
+						displayDate: true
+					});
+				}
+				
+				createDigitalclock();
+				
+				$("h1 span").text($("#clock").data("digitalclock").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":utility-digitalclock").digitalclock("destroy");
+				}, function(event) {
+					createDigitalclock();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":utility-digitalclock").digitalclock("disable");
+				}, function(event) {
+					$(":utility-digitalclock").digitalclock("enable");
+				});
+			});
+			//-->
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Reloj Digital (jquery.lara.utility.digitalclock.js) v<span></span></h1>
+			
+			<div id="clock" class="ui-widget-header ui-corner-all"></div>
+			<div id="clock2" class="ui-widget-header ui-corner-all"></div>
+			<div id="clock3" class="ui-widget-header ui-corner-all"></div>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>log</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2012-01-17 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : checkbox.html
+			Comienzo	 	   : 2011-Sep-19
+			Ultima Modificacion: 2011-Dic-09
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo del boton de comfirmacion.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			ul { list-style: none; padding-left: 0; }
+			li { padding: 0.4em; }
+			#panelBotones { margin-top: 20px; padding: 0.1em 0.4em 0.4em; }
+		</style>
+		
+		<!-- -----------------------------
+			 ## Estilos de botonCasilla ##
+			 ----------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.notelog.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalida de botonCasilla ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.utility.notelog.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createNotelog() {
+					$("#log").notelog({
+						height: "100px",
+						timeFormat: "[hh]:[mm]:[ss]",
+						dateFormat: "[yy]/[mm]/[dd]",
+						messageFormat: "({date}-{time}) {scope}: {msg}",
+						militaryTime: true
+					});
+				}
+				
+				createNotelog();
+				
+				$("h1 span").text($("#log").data("notelog").version);
+				// ----------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":utility-notelog").notelog("destroy");
+				}, function(event) {
+					createNotelog();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":utility-notelog").notelog("disable");
+				}, function(event) {
+					$(":utility-notelog").notelog("enable");
+				});
+				$("#mensaje").button().click(function() {
+					$("#log").notelog("addLog", "Sistema", "Esto es un mensaje del sistema.");
+				});
+				$("#mensaje2").button().click(function() {
+					$("#log").notelog("addLog", "Usuario", "Esto es un mensaje del usuario.");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Bit&aacute;cora de actividades (jquery.lara.utility.notelog.js) v<span></span></h1>
+			
+			<p class="ui-widget">Log:</p>
+			<div id="log"></div>
+			
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+				<button id="mensaje">Mensaje del sistema</button>
+				<button id="mensaje2">Mensaje del usuario</button>
+			</div>
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DEMO</div>
+		</div>
+	</body>
+</html>

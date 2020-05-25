@@ -1,0 +1,57 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.table.css
+ * Beginning      : 2011-Nov-16
+ * Last modified  : 2011-Dic-10
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 0.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.table.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.table.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-table { margin: 0; border-collapse: collapse; }
+
+.ui-table caption { padding: 0.4em 0.6em; text-align: left; line-height: 22px; }
+.ui-table caption .ui-table-icon-display { position: static; float: left; display: inline; margin-right: 3px; cursor: pointer; }
+.ui-table caption .ui-table-icon-display.ui-icon-triangle-1-e { margin-top: 2px; }
+.ui-table caption .ui-table-icon-display.ui-icon-triangle-1-s { margin-top: 3px; }
+.ui-table caption .ui-table-quantity-rows { margin-left: 0.2em; font-weight: normal; cursor: default; display: inline; }
+.ui-table caption input,
+.ui-table caption button,
+.ui-table caption a { margin: 0 0.3em; padding: 0.1em 0.0em; float: right; }
+.ui-table caption input .ui-button-text,
+.ui-table caption button .ui-button-text,
+.ui-table caption a .ui-button-text { padding-top: 0.2em; padding-bottom: 0.1em; }
+.ui-table caption .ui-table-wrap-inner-caption { display: inline; }
+
+.ui-table th { border-width: 0;  padding: 0.6em 10px; text-align: left; }
+.ui-table td { border-bottom: 1px solid #eee; padding: 0.6em 10px; text-align: left; }
+
+.ui-table th.ui-state-hover { font-weight: bold; }
+
+.ui-table .ui-table-th-toolcheck { width: 10px; }
+.ui-table .ui-table-td-toolcheck { width: 10px; }
+
+.ui-table .ui-table-th-toolsettings { width: 33px; }
+.ui-table td.ui-table-td-toolsettings button { margin: 0; padding: 0.1em 0.0em; }
+.ui-table td.ui-table-td-toolsettings button .ui-button-text { padding-top: 0.1em; padding-bottom: 0.1em; }

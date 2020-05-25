@@ -1,0 +1,34 @@
+/* ====================================================================+
+ * File name      : jquery.lara.utility.notelog.css
+ * Beginning      : 2012-Ene-17
+ * Last modified  : 2012-Ene-17
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.utility.notelog.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.utility.notelog.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-utility-notelog { margin: 0.3em 0; overflow: auto; }
+.ui-utility-notelog .ui-utility-notelog-content { margin: 0; padding: 0.3em; }
+.ui-utility-notelog .ui-utility-notelog-content span { display: block; }

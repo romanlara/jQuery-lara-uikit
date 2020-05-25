@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>toolbar</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2012-01-08 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : toolbar.html
+			Comienzo	 	   : 2011-Dic-30
+			Ultima Modificacion: 2012-Ene-04
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un temporizador.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+			.notas { width: 40%; font-size: 1.1em; }
+			#log { margin: 0.4em; width: 20%; height: 100px; border: 1px solid #000000; overflow: auto; }
+			
+			#wrap-toolbar { margin: 0; padding: 0; list-style: none; }
+			#wrap-toolbar li { margin-top: -1px; }
+			#wrap-toolbar .ui-state-highlight { height: 3.3em; }
+			
+			#tool { margin: 0; padding: 0.4em; list-style: none; }
+			#tool li { display: inline-block; /*float: left;*/ list-style: none; text-align: center; }
+			#tool li * { display: inline-block; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.toolbar.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.fieldtext.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.ui.toolbar.js"></script>
+		<script type="text/javascript" src="../fieldtext/jquery.lara.ui.fieldtext.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#toolbar").toolbar();
+				$("#toolbar2").toolbar();
+				
+				$("#wrap-toolbar").sortable({
+					axis: "y",
+					placeholder: "ui-state-highlight"
+				});
+				
+				$("h1 span").text($("#toolbar").data("toolbar").version);
+				
+				// -------------------------------------------------------------------
+				$("#guardar").button({ icons: { primary: "ui-icon-disk" }, text: false });
+				$("#imprimir").button({ icons: { primary: "ui-icon-print" }, text: false });
+				$("#hogar").button({ icons: { primary: "ui-icon-home" }, text: false });
+				$("#preview").button({ icons: { primary: "ui-icon-image" }, text: false });
+				$("#propiedades").button({ icons: { primary: "ui-icon-wrench" }, text: false });
+				$("#buscar").button({ icons: { primary: "ui-icon-search" }, text: false });
+				$("#filtro").fieldtext();
+				$("#editar").button({ icons: { primary: "ui-icon-pencil" }, text: false });
+				$("#ayuda").button({ icons: { primary: "ui-icon-help" }, text: false });
+				$("#cortar").button({ icons: { primary: "ui-icon-scissors" }, text: false });
+				$("#copiar").button({ icons: { primary: "ui-icon-copy" }, text: false });
+				$("#pegar").button({ icons: { primary: "ui-icon-clipboard" }, text: false });
+				
+				$("#buscar2").button({ icons: { primary: "ui-icon-search" }, text: false });
+				$("#filtro2").fieldtext();
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":ui-toolbar").toolbar("destroy");
+				}, function(event) {
+					$("#toolbar").data("toolbar")._create();
+					$("#toolbar2").data("toolbar")._create();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":ui-toolbar").toolbar("disable");
+				}, function(event) {
+					$(":ui-toolbar").toolbar("enable");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Barra de Herramientas (jquery.lara.ui.toolbar.js) v<span></span></h1>
+			
+			<ul id="wrap-toolbar">
+				<li>
+					<ul id="toolbar">
+						<li>
+							<button id="guardar">Guardar</button>
+							<button id="imprimir">Imprimir</button>
+						</li>
+						<li>
+							<button id="hogar">Hogar</button>
+							<button id="preview">Previsualizaci&oacute;n</button>
+							<button id="propiedades">Propiedades</button>
+						</li>
+						<li>
+							<label for="filtro">Buscar</label>
+							<input type="text" name="filtro" id="filtro" />
+							<button id="buscar">Buscar</button>
+						</li>
+					</ul>
+				</li>
+				<li>
+					<ul id="toolbar2">
+						<li>
+							<button id="editar">Editar</button>
+						</li>
+						<li>
+							<button id="ayuda">Ayuda</button>
+						</li>
+						<li>
+							<button id="cortar">Cortar</button>
+							<button id="copiar">Copiar</button>
+							<button id="pegar">Pegar</button>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			
+			<ul id="tool" class="ui-state-default">
+				<li><label for="filtro2">Buscar</label></li>
+				<li><label for="filtro2">Buscar:</label><input type="text" name="filtro2" id="filtro2" /></li>
+				<li><button id="buscar2">Buscar</button></li>
+			</ul>
+			
+			<!-- =============+
+				 | Panel log
+				 =============+ -->
+			<p class="ui-widget">Log:</p>
+			<div id="log" class="ui-widget"><div></div></div>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

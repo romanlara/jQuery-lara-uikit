@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>ctrl.notifier</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2012-02-01 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : ctrldNotificador_general.html
+			Comienzo	 	   : 2011-Nov-10
+			Ultima Modificacion: 2011-Nov-10
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un menu con tareas asignadas.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/sonos/jquery-ui-1.8.20.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#msgTmp { text-align: center; }
+			.notas { width: 40%; font-size: 1.1em; }
+		</style>
+		
+		<!-- ---------------------------------
+			 ## Estilos de menu y menubarra ##
+			 --------------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.notifier.css" />
+		
+		<!-- --------------------------------------
+			 ## Funcionalida de menu y menubarra ##
+			 -------------------------------------- -->
+		<script type="text/javascript" src="../../../../library/jquery-shortcut/jquery.shortcut.js"></script>
+		<script type="text/javascript" src="jquery.lara.utility.notifier.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createNotifiers() {
+					$("#messageTmp").notifier({
+						width: 220,
+						textSize: "1em",
+						position: {
+							my: "left top",
+							at: "left top"
+						},
+						message: "Un Sistema de Notificaci&oacute;n",
+						icon: "ui-icon-info",
+						shortcutkeys: "Shift+Q",
+						messageCloseFormat: "Pulse {shortcutkey} para cerrar este mensaje.",
+						delay: 2100,
+						show: "blind",
+						hide: "fade"
+					});
+				
+					$("#notificador").notifier({
+						width: 220,
+						textSize: "1em",
+						position: {
+							my: "right bottom",
+							at: "right bottom"
+						},
+						message: 'Pueden hacerse notificadores m&aacute;s complejos, como &eacute;ste, ' + 
+								 'con un titulo, un boton de cierre, y un panel para cerrar el mensaje por teclado.',
+						autoOpen: false,
+						autoClose: false,
+						title: "Notificaci&oacute;n",
+						icon: "ui-icon-info",
+						shortcutkeys: "Shift+Q",
+						messageCloseFormat: "Pulse {shortcutkey} para cerrar este mensaje.",
+						show: "clip",
+						hide: "clip"
+					});
+				
+					$("#notifErrores").notifier({
+						width: 220,
+						textSize: "1em",
+						position: {
+							my: "right top",
+							at: "right top"
+						},
+						message: 'Error al guardar',
+						autoOpen: false,
+						autoClose: false,
+						title: "Error",
+						icon: "ui-icon-alert",
+						shortcutkeys: "Shift+Q",
+						messageCloseFormat: "Pulse {shortcutkey} para cerrar este mensaje.",
+						show: "bounce",
+						hide: "blind"
+					});
+				}
+				
+				createNotifiers();
+				
+				$("h1 span").text($("#messageTmp").data("notifier").version);
+				
+				// -------------------------------------------------------------------
+				$("#aceptar").button().click(function(event) {
+					$("#messageTmp").notifier("message", "Procesando la informaci&oacute;n...");
+				});
+				$("#rechazar").button().click(function(event) {
+					$("#messageTmp").notifier("message", "Gracias por su atenci&oacute;n");
+				});
+				$("#cambiar").button().toggle(function(event) {
+					$("#messageTmp")
+						.notifier("option", "show", "bounce")
+						.notifier("option", "delay", 3300)
+						.notifier("message", "Han cambiado las opciones.<br> Show: Bounce, Duraci&oacute;n: 3300ms");
+				}, function(event) {
+					$("#messageTmp")
+						.notifier("option", "show", "blind")
+						.notifier("option", "delay", 2100)
+						.notifier("message", "Han cambiado las opciones.<br> Show: Blind, Duraci&oacute;n: 2100ms");
+				});
+				$("#cerrar").button().toggle(function() {
+					$("#messageTmp").notifier("option", "autoClose", false);
+				}, function() {
+					$("#messageTmp").notifier("option", "autoClose", true);
+				});
+				
+				// -------------------------------------------------------------------
+				$("#notifique").button().click(function() {
+					var msg = "Este es un nuevo mensaje, que espera a que el anterior haya sido cerrado.";
+					$("#notificador").notifier("message", msg, "Notificaci&oacute;n", "ui-icon-info");
+				});
+				$("#notifique2").button().click(function() {
+					var msg = "Otro mensaje que cambia el icono y el titulo seg&uacuten su orden.";
+					$("#notificador").notifier("message", msg, "Alerta", "ui-icon-alert");
+				});
+				$("#notifique3").button().click(function() {
+					var msg = "Otro mensaje, pero de error.";
+					$("#notifErrores").notifier("message", msg);
+				});
+				
+				var i = 1;
+				var timer = null;
+				
+				$("#notifiqueCiclo").button().toggle(function(event) {
+					var msj;
+					
+					timer = setInterval(function() {
+						msg = "Este es el mensaje n&uacute;mero " + (i++) + " del ciclo.";
+						$("#notificador").notifier("message", msg, "Notificaci&oacute;n", "ui-icon-info");
+					}, 10);
+					
+				}, function(event) {
+					i = 1;
+					clearInterval(timer);
+				});
+				
+				$("#destruir").button().toggle(function() {
+					$(":utility-notifier").notifier("destroy");
+				}, function() {
+					createNotifiers();
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Notificador (jquery.lara.utility.notifier.js) v<span></span></h1>
+			
+			<div>
+				<p class="notas">
+				Presione los siguientes botones para leer las notificaciones que aparecen en pantalla.
+				</p>
+				
+				<button id="aceptar">Aceptar</button>
+				<button id="rechazar">Rechazar</button>
+				<button id="cambiar">Cambiar efectos</button>
+				<button id="cerrar">Cerrar | Auto cerrar</button>
+				<!--<button id="destruir">Destruir | Crear</button>-->
+				
+				<br />
+				
+				<p class="notas">
+				Los siguientes botones, son para agregar a la cola tanto la cantidad de mensajes
+				como el n&uacute;mero de veses que usted los presione.
+				</p>
+				
+				<button id="notifique">Notifique un Mensaje</button>
+				<button id="notifique2">Notifique otro Mensaje</button>
+				<button id="notifique3">Notifique un Error</button>
+				<button id="notifiqueCiclo">Notifique un Mensaje cada Segundo</button>
+				<button id="destruir">Destruir | Crear</button>
+			</div>
+		</div>
+		<div id="messageTmp" title="Mensaje Temporal"></div>
+		<div id="notificador" title="Notificaci&oacute;n"></div>
+		<div id="notifErrores" title="Error"></div>
+	</body>
+</html>

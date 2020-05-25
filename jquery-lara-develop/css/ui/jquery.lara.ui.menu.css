@@ -1,0 +1,50 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.menu.css
+ * Beginning      : 2011-Oct-17
+ * Last modified  : 2012-Abr-14
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.menu.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.menu.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-menu { margin: 0; padding: 2px; list-style: none; display: block; float: none; }
+.ui-menu .ui-menu { position: fixed; width: 20%; box-shadow: 2px 2px 5px -2px rgba(0, 0, 0, 0.5); z-index: 2000; }
+
+.ui-menu .ui-menu-li { margin: 0; padding: 0; zoom: 1; clear: left; width: 100%; }
+.ui-menu .ui-menu-li .ui-menu-margin { padding-left: 4px; }
+
+.ui-menu .ui-menu-icon-item { position: static; float: left; margin-top: -1px; }
+
+.ui-menu .ui-menu-separator { border-bottom: 1px solid #ccc; }
+.ui-menu .ui-menu-label { margin: 0; padding: 4px 4px 4px 7px; }
+
+/* ------ */
+.ui-menu-iteml { margin: 0; padding: 4px 4px 4px 20px; text-decoration: none; display: block; line-height: 15px; zoom: 1; cursor: default; }
+
+.ui-menu-iteml.ui-state-focus,
+.ui-menu-iteml.ui-state-active { margin: -1px; font-weight: normal; }
+
+.ui-menu-iteml .ui-menu-iteml-keys { margin-right: 1em; position: static; float: right; font-size: 1em; margin-top: -1px; }
+.ui-menu-iteml .ui-menu-iteml-submenu-icon { position: static; float: right; margin-top: -1px; }

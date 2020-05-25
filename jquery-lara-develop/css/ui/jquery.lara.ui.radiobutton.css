@@ -1,0 +1,43 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.radiobutton.css
+ * Beginning      : 2011-Sep-26
+ * Last modified  : 2011-Dic-09
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para los botones de radio.
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.radiobutton.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-radiobutton { position: relative; /*display: block;*/ cursor: pointer; }
+.ui-radiobutton-input { /*position: relative; top: 17px; left: -3px;*/ }
+
+.ui-radiobutton .ui-radiobutton-button { margin-left: -20px; padding: 0; width: 100%; }
+
+.ui-radiobutton .ui-radiobutton-text { margin: 0; padding: 4px; line-height: 15px; width: 100%; }
+.ui-radiobutton .ui-radiobutton-box { display: inline-block; position: relative; top: 4px; /*border: 1px solid #aaa;*/ width: 16px; height: 16px;
+										 -moz-border-radius: 8px; -webkit-border-radius: 8px; -o-border-radius: 8px; border-radius: 8px; }
+.ui-radiobutton .ui-icon { /*margin-left: -16px; float: left;*/ /*position: absolute; margin-top: -17px; left: -19px;*/ }
+
+.ui-radiobutton .ui-radiobutton-text.ui-state-active,
+.ui-radiobutton .ui-radiobutton-text.ui-state-hover { background: none; border: none; font-weight: normal; }

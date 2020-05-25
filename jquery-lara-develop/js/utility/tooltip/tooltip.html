@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Tooltip</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2012-02-07 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : tooltip.html
+			Comienzo	 	   : 2011-Dic-30
+			Ultima Modificacion: 2012-Jul-25
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de una leyena.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+			.notas { width: 40%; font-size: 1.1em; }
+			
+			#checkboxes { width: 200px; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.checkbox.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.tooltip.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="../../ui/checkbox/jquery.lara.ui.checkbox.js"></script>
+		<script type="text/javascript" src="jquery.lara.utility.tooltip.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createTooltips() {
+					$("#cache").next().tooltip({
+						width: 300,
+						mouse: false,
+						delayInOpening: 600,
+						openDuration: 20000,
+						position: {
+							my: "left center",
+							at: "right center"
+						},
+						triangle: {
+							position: "left"
+						},
+						show: "fade",
+						hide: "fade",
+						message: "<p>Esto permite que la informac&oacute;n solicitada " +
+								 "frecuentemente al servidor, est&eacute; disponible " +
+								 "en la memoria local, reduciendo conciderablemente " +
+								 "el tiempo de espera.</p>" +
+								 "<p>Deshabilite esta opci&oacute;n si su maquina " +
+								 "no dispone de suficiente memoria.</p>"
+					});
+					$("#heartbeat").next().tooltip({
+						width: 300,
+						mouse: false,
+						delayInOpening: 600,
+						openDuration: 20000,
+						show: "fade",
+						hide: "fade",
+						position: {
+							my: "left center",
+							at: "right center"
+						},
+						triangle: {
+							position: "left"
+						},
+						message: "<p>El latido de coraz&oacute;n, realiza una petici&oacute;n " +
+								 "al servidor cada cierto tiempo, para as&iacute;, evitar que la sesi&oacute;n " +
+								 "se cierre; tomando en cuenta, que miestras se est&aacute; trabajando no se " +
+								 "interrumpa su labor.</p>" +
+								 "<p>Esta opci&oacute;n se aprovecha mucho mejor si la " +
+								 "herramienta local cache esta activada.</p>"
+					});
+					$("#destruir").tooltip({
+						delayInOpening: 900,
+						openDuration: 5000,
+						show: "blind",
+						hide: "blind",
+						mouse: false,
+						mouseleave: false,
+						position: {
+							my: "center top",
+							at: "center bottom"
+						},
+						triangle: {
+							position: "top"
+						},
+						message: "Destruye o crea el widget legend"
+					});
+					$("#inhabilitar").tooltip({
+						delayInOpening: 900,
+						openDuration: 5000,
+						show: "fold",
+						hide: "fold",
+						mouseleave: false,
+						position: {
+							my: "center bottom",
+							at: "center top"
+						},
+						triangle: {
+							position: "bottom"
+						},
+						message: "Inhabilita o habilita el widget legend"
+					});
+				}
+				
+				createTooltips();
+				
+				$("input[type='checkbox']").checkbox({glowingtext: true});
+				
+				$("h1 span").text($("#cache").next().data("tooltip").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":utility-tooltip").tooltip("destroy");
+				}, function(event) {
+					createTooltips();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":utility-tooltip").tooltip("disable");
+				}, function(event) {
+					$(":utility-tooltip").tooltip("enable");
+				});
+			});
+			//-->
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Leyenda o Herramienta Tip (jquery.lara.utility.tooltip.js) v<span></span></h1>
+			
+			<fieldset id="checkboxes" class="ui-widget ui-widget-content ui-corner-all">
+				<legend>Rendimiento</legend>
+				<input type="checkbox" name="cache" id="cache" />
+				<label for="cache">Usar la herramienta Local Cache</label>
+				<br />
+				<input type="checkbox" name="heartbeat" id="heartbeat" />
+				<label for="heartbeat">Usar el sistema HeartBeat</label>
+			</fieldset>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+		<title>colorpicker</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Lara E.M.S. Roman" />
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		
+		<!--
+			================================================================+
+			Nombre del Archivo : colorpicker.html
+			Comienzo	 	   : 2012-May-29
+			Ultima Modificacion: 2012-May-29
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un selector de color.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+			.notas { width: 40%; font-size: 1.1em; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.colorpicker.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.utility.colorpicker.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createColorpicker() {
+					$("#colorpicker").colorpicker();
+				}
+				
+				createColorpicker();
+				
+				$("h1 span").text($("#colorpicker").data("colorpicker").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":utility-colorpicker").colorpicker("destroy");
+				}, function(event) {
+					createColorpicker();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":utility-colorpicker").colorpicker("disable");
+				}, function(event) {
+					$(":utility-colorpicker").colorpicker("enable");
+				});
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="interface">
+			<header>
+				<h1 class="ui-widget-header ui-corner-all">Colorpicker (jquery.lara.utility.colorpicker.js) v<span></span></h1>
+			</header>
+
+			<div id="contenedor">
+				<div id="colorpicker" title="Colores"></div>
+				
+				<!-- ==================================================+
+				 	 | Panel de botones especiales para la tabla
+				 	 ==================================================+ -->
+				<div id="panelBotones">
+					<button id="destruir">Destruir | Crear</button>
+					<button id="inhabilitar">Inhabilitar | Habilitar</button>
+				</div> <!-- /Fin de #panelBotones -->
+			</div>
+
+			<footer>
+				<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+			</footer>
+		</div>
+	</body>
+</html>

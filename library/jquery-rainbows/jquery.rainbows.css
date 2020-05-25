@@ -1,0 +1,65 @@
+.wrap {
+    display: block;
+    padding: 0 1px 0 0;
+    position: relative;
+}
+.wrap .shadow {
+    color: #000000;
+    left: 1px;
+    line-height: inherit;
+    position: absolute;
+    top: 0;
+}
+.wrap .shadow a {
+    color: #000000;
+}
+.wrap .highlight {
+    color: #FFFFFF;
+    left: 0;
+    line-height: inherit;
+    opacity: 0.7;
+    position: absolute;
+    top: 1px;
+}
+.wrap .source {
+    position: relative;
+}
+.rainbow, .rainbows-highlight, .rainbows-shadow {
+}
+.rainbow {
+    background: none repeat scroll 0 0 transparent;
+    display: block;
+    height: 1px;
+    overflow: hidden;
+    position: relative;
+    z-index: 4;
+}
+.rainbow span {
+    display: block;
+    left: 1px;
+    position: absolute;
+    top: 0;
+}
+a .rainbow span {
+    white-space: nowrap;
+}
+.rainbows-highlight {
+    color: #FFFFFF !important;
+    display: block;
+    left: 0;
+    position: absolute;
+    top: -1px;
+    z-index: 2;
+}
+.rainbows-shadow {
+    color: #000000 !important;
+    display: block;
+    left: 2px;
+    position: absolute;
+    top: 1px;
+    z-index: 3;
+}
+.back .text .rainbows-shadow {
+    color: #FFFFFF !important;
+    opacity: 0.3;
+}

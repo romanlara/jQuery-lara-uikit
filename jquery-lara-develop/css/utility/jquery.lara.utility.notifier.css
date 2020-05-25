@@ -1,0 +1,48 @@
+/* ====================================================================+
+ * File name      : jquery.lara.utility.notifier.css
+ * Beginning      : 2011-Nov-07
+ * Last modified  : 2011-Dic-09
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.utility.notifier.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.utility.notifier.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-utility-notifier { padding: 0; position: absolute; display: inline-block;  border-width: 3px;
+				   box-shadow: 2px 2px 5px -2px rgba(0, 0, 0, 0.5); z-index: 1000; }
+
+.ui-utility-notifier .ui-utility-notifier-titlebar { padding: 0.4em 1em; display: block; position: relative; }
+.ui-utility-notifier .ui-utility-notifier-titlebar .ui-utility-notifier-title { margin: 0.1em 16px 0.1em 0; font-size: 1em; }
+.ui-utility-notifier .ui-utility-notifier-titlebar .ui-utility-notifier-close { margin: -9px 0 0; padding: 1px; position: absolute; height: 10px; width: 11px; right: 0.3em; top: 51%; }
+.ui-utility-notifier .ui-utility-notifier-titlebar .ui-utility-notifier-close span { margin: -3px; display: block; }
+
+.ui-utility-notifier .ui-utility-notifier-titlebar .ui-utility-notifier-close.ui-state-hover { margin: -10px -1px; }
+
+.ui-utility-notifier .ui-utility-notifier-content { padding: 0.7em 0.5em; display: block; position: relative; }
+.ui-utility-notifier .ui-utility-notifier-content .ui-icon { float: left; margin: -1px 2px 3px 0; }
+
+.ui-utility-notifier .ui-utility-notifier-closingpane { background-image: none; border-width: 1px 0 0; margin: 0.5em 0 0; padding: 0.3em 1em 0.5em 0.4em; text-align: center; }
+.ui-utility-notifier .ui-utility-notifier-closingpane .ui-utility-notifier-legend { font-size: 0.89em; }
+
+.ui-utility-notifier .ui-utility-notifier-quantity-msg { padding: 0.1em 0.5em; display: block; position: relative; font-size: 0.82em; text-align: right; }

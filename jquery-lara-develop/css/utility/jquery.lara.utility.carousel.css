@@ -1,0 +1,57 @@
+/* ====================================================================+
+ * File name      : jquery.lara.utility.carousel.css
+ * Beginning      : 2012-Mar-17
+ * Last modified  : 2012-Mar-17
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 0.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.utility.carousel.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.utility.carousel.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-utility-carousel { margin: 0; padding: 0; }
+.ui-utility-carousel .ui-utility-carousel-desktop { margin: 0; padding: 1em 0; color: #333; }
+
+.ui-utility-carousel-viewfinder { margin: 0.55em 150px 0; padding: 0; position: relative; overflow: hidden; border-bottom: 1px dotted #CCC; border-top: 1px dotted #CCC; }
+
+.ui-utility-carousel-counter { margin: 0.5em auto 4em auto; }
+.ui-utility-carousel-counter li{ margin-right: 10px; float: left; list-style: none; background: #FFF; height: 10px; width: 10px; text-indent: -999em; border: 3px solid #CCC; overflow: hidden; display: block; -moz-border-radius: 15px; -webkit-border-radius: 15px; }
+.ui-utility-carousel-counter li.ui-utility-carousel-selected { background: #7C2684; }
+
+/*.ui-utility-carousel-controls { clear: both; margin: 4em 150px 2em; text-align: center; font-size: 0.9em; }*/
+
+.ui-utility-carousel-controls { background-color: #FFFFFF transparent; color: rgba(0, 0, 0, 0.5); border: none; bottom: 0; font-size: 40px; padding: 0; position: absolute; margin: 0; max-width: 150px; min-width: 90px; height: 55px; outline: none; top: 0; z-index: 5; }
+/*
+.ui-utility-carousel-controls:hover { background-color: #E0E0E0; }
+.ui-utility-carousel-controls:active { background-color: #666666; }*/
+.ui-utility-carousel-prev { margin-left: 60px; padding-bottom: 0; width: 31px; left: 0; top: 0; }
+.ui-utility-carousel-next { margin-right: 75px; padding-bottom: 0; width: 31px; right: 0; top: 0; }
+/*
+.ui-utility-carousel-controls .ui-utility-carousel-prev,
+.ui-utility-carousel-controls .ui-utility-carousel-next { color: #FFF; border: 1px solid #FFF; padding: 0.5em; background: #7C2684; text-decoration: none; text-transform: uppercase; text-shadow: 0 1px 1px #000; }
+.ui-utility-carousel-controls .ui-utility-carousel-prev:hover,
+.ui-utility-carousel-controls .ui-utility-carousel-next:hover { background: #9D5CA3; }
+.ui-utility-carousel-controls .ui-utility-carousel-prev:active,
+.ui-utility-carousel-controls .ui-utility-carousel-next:active { position: relative; top: 1px; }
+.ui-utility-carousel-controls .ui-utility-carousel-prev { -moz-border-radius: 5px 0 0 5px; -webkit-border-radius: 5px 0 0 5px; }
+.ui-utility-carousel-controls .ui-utility-carousel-next { -moz-border-radius: 0px 5px 5px 0; -webkit-border-radius: 0px 5px 5px 0; }*/

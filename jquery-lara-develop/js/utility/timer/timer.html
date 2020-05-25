@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>timer</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-12-28 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : timer.html
+			Comienzo	 	   : 2011-Dic-28
+			Ultima Modificacion: 2011-Dic-28
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un temporizador.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+			.notas { width: 40%; font-size: 1.1em; }
+			#log { margin: 0.4em; width: 20%; height: 100px; border: 1px solid #000000; overflow: auto; }
+			
+			#timer,
+			#timer2,
+			#timer3 { margin-bottom: 0.2em; padding: 0.4em; width: 40%; font-size: 2em; text-align: center; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.timer.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.utility.timer.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createTimers() {
+					$("#timer").timer({
+						setHours: 0,
+						setMinutes: 1,
+						timeFormat: "Insufficient [hh] {HH} with [mm] {MM} and [ss] {SS}",
+						task : function(event, ui) {
+							$("#log").children("div").append('<span style="display: block;">' + ui.item.attr("id") + " finished</span>");
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+						}
+					});
+					$("#timer2").timer({
+						setHours: 0,
+						setMinutes: 2,
+						timeFormat: "Faltan [hh] {HH} con [mm] {MM} y [ss] {SS}",
+						pluralHoursText: "horas",
+						pluralMinutesText: "minutos",
+						pluralSecondsText: "segundos",
+						singleHoursText: "hora",
+						singleMinutesText: "minuto",
+						singleSecondsText: "segundo",
+						task : function(event, ui) {
+							$("#log").children("div").append('<span style="display: block;">' + ui.item.attr("id") + " finished</span>");
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+						}
+					});
+					$("#timer3").timer({
+						setHours: 0,
+						setMinutes: 1,
+						shortenTime: true,
+						timeFormat: "[hh] {HH} [mm] {MM} [ss] {SS}",
+						pluralHoursText: "horas",
+						pluralMinutesText: "minutos",
+						pluralSecondsText: "segundos",
+						singleHoursText: "hora con",
+						singleMinutesText: "minuto",
+						singleSecondsText: "segundo",
+						finishText: "Termin&oacute;",
+						task : function(event, ui) {
+							$("#log").children("div").append('<span style="display: block;">' + ui.item.attr("id") + " finished</span>");
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+						}
+					});
+				}
+				
+				createTimers();
+				
+				$("h1 span").text($("#timer").data("timer").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":utility-timer").timer("destroy");
+				}, function(event) {
+					createTimers();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":utility-timer").timer("disable");
+				}, function(event) {
+					$(":utility-timer").timer("enable");
+				});
+				$("#reset").button().click(function(event) {
+					$(":utility-timer").timer("reset");
+				});
+				$("#stop").button().click(function(event) {
+					$(":utility-timer").timer("stop");
+				});
+				$("#continue").button().click(function(event) {
+					$(":utility-timer").timer("walk");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Temporizador (jquery.lara.utility.timer.js) v<span></span></h1>
+			
+			<div id="timer" class="ui-widget-header ui-corner-all"></div>
+			<div id="timer2" class="ui-widget-header ui-corner-all"></div>
+			<div id="timer3" class="ui-widget-header ui-corner-all"></div>
+			
+			<p class="ui-widget">Log:</p>
+			<div id="log" class="ui-widget"><div></div></div>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+				<button id="reset">Reiniciar</button>
+				<button id="stop">Detener</button>
+				<button id="continue">Continuar</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,23 @@
+/* ========================================================================+
+ * File name     : general.css
+ * Beginning     : 2011-Sep-29
+ * Last modified : 2011-Sep-29
+ * 
+ * Author        : Lara E.M.S. Roman
+ * 
+ * Description   : Estilo para los ejemplos.
+ * ========================================================================+
+ */
+
+body { font: 62.5% "Maven Pro", "Trebuchet MS", sans-serif; background-color: #EBEBEB; }
+
+.contenedor { margin: 0.4em 2em; padding: 0.1em; position: relative; background-color: #EBEBEB; text-align: left; }
+.contenedor h1 { margin: 0.1em 0 0.4em 0; padding: 0.4em; }
+.contenedor #panelBotones { margin-top: 20px; }
+.contenedor	.notas { width: 40%; font-size: 1.1em; }
+
+.aperos-demo-msn { margin-top: 2em; font-size: 1em; }
+
+header h1 { margin: 0.1em 0 0.4em 0; padding: 0.4em; }
+
+footer .aperos-demo-msn { margin-top: 2em; font-size: 1em; }

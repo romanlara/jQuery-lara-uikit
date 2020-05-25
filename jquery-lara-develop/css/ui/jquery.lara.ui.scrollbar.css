@@ -1,0 +1,32 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.scrollbar.css
+ * Beginning      : none-none-00
+ * Last modified  : none-none-00
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 0.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.scrollbar.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.scrollbar.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-scrollbar {  }

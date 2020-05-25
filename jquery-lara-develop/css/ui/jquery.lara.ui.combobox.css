@@ -1,0 +1,36 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.combobox.css
+ * Beginning      : 2012-Ene-26
+ * Last modified  : 2012-Ene-26
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 0.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.combobox.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.combobox.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-combobox {  }
+
+.ui-combobox-button { margin-left: -1px; }
+.ui-combobox-button .ui-button-text { padding: 0.2em; } 
+.ui-combobox-autocomplete { margin: 0; padding: 0.35em; /*padding: 0.2em 0 0.2em 0.45em;*/ }

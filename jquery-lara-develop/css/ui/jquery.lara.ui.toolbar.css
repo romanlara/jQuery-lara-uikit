@@ -1,0 +1,37 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.toolbar.css
+ * Beginning      : 2012-Ene-08
+ * Last modified  : 2012-Ene-08
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.toolbar.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.toolbar.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-toolbar { margin: 0; padding: 0.4em; list-style: none; }
+
+.ui-toolbar li { display: inline; }
+.ui-toolbar li .ui-button { border-width: 0; }
+.ui-toolbar li .ui-toolbar-splitter { margin-bottom: -0.4em; margin-left: -4px; display: inline-block; width: 11px; }
+.ui-toolbar .ui-state-highlight { padding: 0.5em 1em; }

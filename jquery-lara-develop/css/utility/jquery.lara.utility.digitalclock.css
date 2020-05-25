@@ -1,0 +1,32 @@
+/* ====================================================================+
+ * File name      : jquery.lara.utility.digitalclock.css
+ * Beginning      : 2011-Dic-11
+ * Last modified  : 2011-Dic-11
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.utility.digitalclock.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.utility.digitalclock.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-utility-digitalclock { margin: 0; padding: 0; }

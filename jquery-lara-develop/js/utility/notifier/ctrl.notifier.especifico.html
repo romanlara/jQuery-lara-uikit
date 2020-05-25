@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Sistema de Notificaciones Especifico</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-11-10 -->
+		
+		<!--
+			================================================================+
+			Nombre del Archivo : ctrldNotificador_gespecifico.html
+			Comienzo	 	   : 2011-Nov-10
+			Ultima Modificacion: 2011-Nov-10
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un menu con tareas asignadas.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/themes/redmond/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../lib/jquery-ui-1.8.16/css/redmond/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../lib/jquery-ui-1.8.16/js/jquery-1.6.2.min.js"></script>
+		<script type="text/javascript" src="../../../lib/jquery-ui-1.8.16/js/jquery-ui-1.8.16.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!--
+		<script type="text/javascript" src="http://ui.jquery.com/applications/themeroller/themeswitchertool/"></script>
+		<script type="text/javascript"> $(function(){ $('<div style="position: absolute; top: 100px; right: 29px;" />').appendTo('body').themeswitcher(); }); </script>
+		-->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#msjTmp { text-align: center; }
+			.notas { width: 40%; font-size: 1.1em; }
+			/*#notificador2 .igu-notificador-contenido { text-align: justify; }*/
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.notifier.css" />
+		
+		<!-- ---------------------------------
+			 ## Funcionalida de la interfaz ##
+			 --------------------------------- -->
+		<script type="text/javascript" src="../../../lib/jquery-shortcut/jquery.shortcut.js"></script>
+		<script type="text/javascript" src="jquery.lara.utility.notifier.ctrl.js"></script>
+		<script type="text/javascript" src="jquery.lara.utility.notifier.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			<!--
+			$(document).ready(function() {
+				$("#notificadorInformacion").notifier({
+					width: 220,
+					textSize: "1em",
+					position: {
+						my: "right bottom",
+						at: "right bottom"
+					},
+					autoOpen: false,
+					autoClose: false,
+					title: "Notificaci&oacute;n",
+					icon: "ui-icon-info",
+					shortcutkeys: "Ctrl+Alt+1",
+					show: "clip",
+					hide: "clip"
+				});
+				
+				$("#notificadorErrores").notifier({
+					width: 220,
+					textSize: "1em",
+					position: {
+						my: "right top",
+						at: "right top"
+					},
+					autoOpen: false,
+					autoClose: false,
+					title: "Error",
+					icon: "ui-icon-alert",
+					shortcutkeys: "Ctrl+Alt+2",
+					show: "bounce",
+					hide: "blind"
+				});
+				
+				$("#notificadorSugerencia").notifier({
+					width: 220,
+					textSize: "1em",
+					position: {
+						my: "left top",
+						at: "left top"
+					},
+					autoOpen: false,
+					autoClose: false,
+					title: "Sugerencia",
+					icon: "ui-icon-lightbulb",
+					shortcutkeys: "Ctrl+Alt+3",
+					show: "fold",
+					hide: "fold"
+				});
+				
+				$("#notificadorDuda").notifier({
+					width: 220,
+					textSize: "1em",
+					position: {
+						my: "left bottom",
+						at: "left bottom"
+					},
+					autoOpen: false,
+					autoClose: false,
+					title: "Duda",
+					icon: "ui-icon-help",
+					shortcutkeys: "Ctrl+Alt+4",
+					show: "slide",
+					hide: "slide"
+				});
+				
+				$("#notificadorImportante").notifier({
+					width: 220,
+					textSize: "1em",
+					position: {
+						my: "center center",
+						at: "center center"
+					},
+					autoOpen: false,
+					autoClose: false,
+					title: "Importante",
+					icon: "ui-icon-notice",
+					shortcutkeys: "Ctrl+Alt+5",
+					show: "highlight",
+					hide: null
+				});
+				
+				// -------------------------------------------------------------------
+				/* Una forma para hacer esperar otras notificaciones y, 
+				 * que no tengan que sustituir o encimar la anterior con tanta rapidez,
+				 * es importar el archivo enseres.stmNotificacion.js, quien 
+				 * se encarga de controlar todos los notificadores que el sistema vaya 
+				 * lanzando. 
+				 * 
+				 * Para comenzar a usarlo, puede o no utilizar la siguiente función:
+				 *  
+				 *      setIntervalo();
+				 * 
+				 * Esta función crea un intervalo de 100ms que, ejecuta la función 
+				 * leerVisibilidad(), quien revisa si hay o no notificaciones
+				 * visibles, para poner o no en espera la nueva notificación.
+				 * 
+				 * Después utilise la función nuevoMensaje(), para enviar todas las notificaciones
+				 * del sistema a la cola. (Si omitio la función de un principio setIntervalo(), no
+				 * hay problema con el stmNotificacion, ya que la función nuevoMensaje() se encarga
+				 * de analizar si hay o no hay un intervalo activo, el mismo lo construye, y claro,
+				 * siempre que la cola este vacía el intervalo se destruye.)
+				 */
+				var informationNotificationSystem = new ctrlnotifier("#notificadorInformacion");
+				var errorsNotificationSystem = new ctrlnotifier("#notificadorErrores");
+				var suggestionsNotificationSystem = new ctrlnotifier("#notificadorSugerencia");
+				var doubtsNotificationSystem = new ctrlnotifier("#notificadorDuda");
+				var importantNotificationSystem = new ctrlnotifier("#notificadorImportante");
+				
+				// -------------------------------------------------------------------
+				$("#notifique1").button().click(function() {
+					var msj = "Este es un mensaje de informaci&oacute;n.";
+					informationNotificationSystem.newMessage("", msj);
+				});
+				$("#notifique2").button().click(function() {
+					var msj = "Este es un mensaje de error.";
+					errorsNotificationSystem.newMessage("", msj);
+				});
+				$("#notifique3").button().click(function() {
+					var msj = "Este es un mensaje de sugerencias.";
+					suggestionsNotificationSystem.newMessage("", msj);
+				});
+				$("#notifique4").button().click(function() {
+					var msj = "Este es un mensaje que da respuestas.";
+					doubtsNotificationSystem.newMessage("", msj);
+				});
+				$("#notifique5").button().click(function() {
+					var msj = "Este es un mensaje muy importante.";
+					importantNotificationSystem.newMessage("", msj);
+				});
+				
+				var i = 1;
+				var timer = null;
+				
+				$("#notifiqueCiclo").button().toggle(function(event) {
+					var msj;
+					
+					timer = setInterval(function() {
+						msj = "Este es el mensaje n&uacute;mero " + (i++) + " del ciclo.";
+						informationNotificationSystem.newMessage("", msj);
+					}, 1000);
+					
+				}, function(event) {
+					i = 1;
+					clearInterval(timer);
+				});
+			});
+			//-->
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Sistema de Notificaciones - Modo Especifico (jquery.lara.utility.ctrl.notifier.js) v<span>1.0.0</span></h1>
+			
+			<div>
+				<p class="notas">
+				Los siguientes botones, son para agregar a la cola tanto la cantidad de mensajes
+				como el n&uacute;mero de veses que usted los presione.
+				</p>
+				<p class="notas">
+				El  &uacute;ltimo bot&oacute;n, lanza un mensaje y es agregado a la cola
+				cada 2 segundos. Una vez activo, presionelo de nuevo para detener el ciclo.
+				</p>
+				
+				<button id="notifique1">Notifique un Mensaje</button>
+				<button id="notifique2">Notifique un Error</button>
+				<button id="notifique3">Notifique una Sugerencia</button>
+				<button id="notifique4">Notifique una Duda</button>
+				<button id="notifique5">Notifique un Mesaje Importante</button>
+				<button id="notifiqueCiclo">Notifique un Mensaje cada Segundo</button>
+			</div>
+		</div>
+		
+		<!-- Los notificadores siempre pongalos al final de body y fuera de otros elementos del DOM. -->
+		<div id="notificadorInformacion" title="Notificaci&oacute;n"></div>
+		<div id="notificadorErrores" title="Error"></div>
+		<div id="notificadorSugerencia" title="Sugerencia"></div>
+		<div id="notificadorDuda" title="Duda"></div>
+		<div id="notificadorImportante" title="Importante"></div>
+	</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>table</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-11-30 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : table.html
+			Comienzo	 	   : 2011-Nov-30
+			Ultima Modificacion: 2011-Dic-04
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un widget que genera una tabla.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#contenedorTabla { padding: 0.4em; width: 60%; height: 355px; overflow: auto; }
+			#panelBotones { margin-top: 20px; }
+			table { width: 100%; }
+			
+			/* Dialogo */
+			label, input { display: block; }
+			input.text { margin-bottom: 12px; width: 95%; padding: .4em; }
+			fieldset { padding: 0; border:0; margin-top: 25px; }
+			.ui-dialog .ui-state-error { padding: .3em; }
+			.validateTips { border: 1px solid transparent; padding: 0.3em; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.checkbox.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menu.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menuitem.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.table.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="../../ui/checkbox/jquery.lara.ui.checkbox.js"></script>
+		<script type="text/javascript" src="../../ui/menu/jquery.lara.ui.menu.js"></script>
+		<script type="text/javascript" src="../../ui/menuitem/jquery.lara.ui.menuitem.js"></script>
+		<script type="text/javascript" src="jquery.lara.ui.table.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				// Establesca .table() para instanciar una tabla.
+				$("#usuarios").table({
+					actionsMenu: "#menuTabla",
+					toolCheckboxes: {
+						activate: true,
+						laraCheckboxes: true,
+						label: null
+					},
+					editingToolButton: {
+						activate: true,
+						textButton: "Editar",
+						text: true,
+						label: null,
+						icons: {
+							primary: null,
+							secondary: "ui-icon-pencil"
+						}
+					},
+					// Este método sirve para obtener la información de la
+					// fila a editar antes de que sea editada.
+					// Vea el código del dialogo, quien realiza la edición, además
+					// de agregar nuevas filas.
+					preedit: function(event, ui) {
+						// Llame a 'datosAEditar' para optener los valores de la
+						// fila que el usuario quiere editar.
+						var editable = ui.item.table("option", "dataToEdit");
+						
+						// Envie los datos a los campos de texto.
+						$("input[name='name']").val(editable[0]);
+						$("input[name='email']").val(editable[1]);
+						$("input[name='password']").val(editable[2]);
+						
+						// Y abra el dialogo.
+						$("#dialog-form").dialog("option", "title", "Editar viejo usuario");
+						$("#dialog-form").dialog("open");
+					}
+				});
+				
+				// Creamos los botones de Caption y sus eventos para manejar la tabla.
+				$("#eliminar").button({
+					icons: {
+						secondary: "ui-icon-trash"
+					}
+				}).click(function(event) {
+					$("#usuarios").table("remove"); // Elimina toda fila seleccionada.
+				});
+				$("#agregar").button({
+					icons: {
+						secondary: "ui-icon-circle-plus"
+					}
+				}).click(function(event) {
+					// Antes de agregar datos a la tabla, si manejamos un dialogo con un
+					// formulario que verifique la información, primero, debemos abrir el 
+					// dialogo, y en él se guardaria en la tabla.
+					$("#dialog-form").dialog("option", "title", "Crear nuevo usuario");
+					$("#dialog-form").dialog("open");
+				});
+				
+				// Creamos el menu de la tabla
+				$("#menuTabla").menu();
+				$("#menuTabla").find("a").menuitem({
+					parentMenu: "#menuTabla"
+				});
+				// Asignamos tareas a los items del menu.
+				$("#menuTabla").find("a[href='#selectall']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#usuarios").table("selectAll");
+						}
+					});
+				$("#menuTabla").find("a[href='#agregar']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#dialog-form").dialog("option", "title", "Crear nuevo usuario");
+							$("#dialog-form").dialog("open");
+						}
+					});
+				$("#menuTabla").find("a[href='#eliminar']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#usuarios").table("remove");
+						}
+					});
+				
+				// Creamos los checkbox del menu de la tabla
+				$("#checkbox-nombre, #checkbox-email, #checkbox-password").checkbox({
+					box: false
+				}).checkbox("select");
+				
+				$("h1 span").text($("#usuarios").data("table").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":ui-table").table("destroy");
+					$("#agregar, #eliminar").button("destroy").unbind("click");
+				}, function(event) {
+					$("#usuarios").data("table")._create();
+					$("#eliminar").button({icons: {secondary: "ui-icon-trash"}}).click(function(event) {$("#usuarios").table("delete");});
+					$("#agregar").button({icons: {secondary: "ui-icon-circle-plus"}}).click(function(event) {$("#dialog-form").dialog("open");});
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":ui-table").table("disable");
+					$("#agregar, #eliminar").button("disable");
+				}, function(event) {
+					$(":ui-table").table("enable");
+					$("#agregar, #eliminar").button("enable");
+				});
+				$("#nuevasFilas").button().click(function(event) {
+					var html = "";
+					for (var i = 1; i <= 10; i++) {
+						html += "<tr>"
+						for (var j = 1; j <= 3; j++) {
+							if (j === 1) 
+								html += "<td>Usuario-" + i + ":" + j + "</td>";
+							else if (j === 2)
+								html += "<td>Email-" + i + ":" + j + "</td>";
+							else if (j === 3)
+								html += "<td>Contrase&ntilde;a-" + i + ":" + j + "</td>";
+						}
+						html += "</tr>";
+						
+						$("#usuarios").table("add", html);
+						html = "";
+					}
+					$("#usuarios").table("refresh");
+				});
+				
+				// -------------------------------------------------------------------
+				var name = $( "#name" ),
+				email = $( "#email" ),
+				password = $( "#password" ),
+				allFields = $( [] ).add( name ).add( email ).add( password ),
+				tips = $( ".validateTips" );
+
+				function updateTips( t ) {
+					tips
+						.text( t )
+						.addClass( "ui-state-highlight" );
+					setTimeout(function() {
+						tips.removeClass( "ui-state-highlight", 1500 );
+					}, 500 );
+				}
+
+				function checkLength( o, n, min, max ) {
+					if ( o.val().length > max || o.val().length < min ) {
+						o.addClass( "ui-state-error" );
+						updateTips( "El tamaño de " + n + " debe estar entre " +
+							min + " y " + max + "." );
+						return false;
+					} else {
+						return true;
+					}
+				}
+	
+				function checkRegexp( o, regexp, n ) {
+					if ( !( regexp.test( o.val() ) ) ) {
+						o.addClass( "ui-state-error" );
+						updateTips( n );
+						return false;
+					} else {
+						return true;
+					}
+				}
+		
+				$( "#dialog-form" ).dialog({
+					autoOpen: false,
+					height: 315,
+					width: 350,
+					modal: true,
+					buttons: {
+						"Aceptar": function() {
+							var bValid = true;
+							allFields.removeClass( "ui-state-error" );
+
+							bValid = bValid && checkLength( name, "username", 3, 16 );
+							bValid = bValid && checkLength( email, "email", 6, 80 );
+							bValid = bValid && checkLength( password, "password", 5, 16 );
+
+							bValid = bValid && checkRegexp( name, /^[a-z]([0-9a-z_])+$/i, "El nombre de usiario debe consistir de a-z, 0-9, comience con una letra." );
+							// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
+							bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
+							bValid = bValid && checkRegexp( password, /^([0-9a-zA-Z])+$/, "La contrase&ntilde;a solo debe consistir en : a-z 0-9" );
+
+							if ( bValid ) {
+								// Si hay una fila en edición, la editamos,
+								// Si no, la agregamos como nueva.
+								if ($("#usuarios").table("option", "thereIsARowBeingEdited")) {
+									// Los datos nuevos para la edición, siempre tienen que estár
+									// en un arreglo.
+									var datos = [name.val(), email.val(), password.val()];
+									// La tabla reconoce que fila se está editando.
+									$("#usuarios").table("edit", datos);
+								} else {
+									// Las nuevas filas se envian en código html o en un arreglo.
+									var fila = "<tr>" +
+													"<td>" + name.val() + "</td>" + 
+													"<td>" + email.val() + "</td>" + 
+													"<td>" + password.val() + "</td>" +
+												"</tr>"
+									$("#usuarios").table("add", fila);
+								}
+								
+								$( this ).dialog( "close" );
+							}
+						},
+						"Cancelar": function() {
+							$( this ).dialog( "close" );
+						}
+					},
+					close: function() {
+						allFields.val( "" ).removeClass( "ui-state-error" );
+						// Siempre que el usuario cancele una edición, haga
+						// lo mismo en la tabla, para que al agregar una nueva fila
+						// no resulte editada una de las existentes.
+						$("#usuarios").table("cancelEditing");
+					}
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Tabla (jquery.lara.ui.table.js) v<span></span></h1>
+			
+			<!-- ==================================================+
+				 | Contenedor de tablas
+				 ==================================================+ -->
+			<div id="contenedorTabla">
+				<!-- ==================================================+
+				 	 | Tabla Usuarios
+				 	 ==================================================+ -->
+				<table id="usuarios">
+					<caption>
+						Usuarios
+						<button id="agregar">Agregar</button>
+						<button id="eliminar">Eliminar</button>
+					</caption>
+					<thead>
+						<!--<tr>
+							<th>Filtro</th>
+						</tr>-->
+						<tr>
+							<th>Nombre</th>
+							<th>Email</th>
+							<th>Contrase&ntilde;a</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>Juan_Carlos</td>
+							<td>jcarlos@hotmail.com</td>
+							<td>5JS8D27TQ</td>
+						</tr>
+						<tr>
+							<td>Bertha_Jimenez</td>
+							<td>bertha_j@live.com.mx</td>
+							<td>23bertha38</td>
+						</tr>
+						<tr>
+							<td>Diana_Cortes</td>
+							<td>diana_cortes@gmail.com</td>
+							<td>1988love</td>
+						</tr>
+						<tr>
+							<td>Ismael_Petersen</td>
+							<td>ismael.petersen@yahoo.com.mx</td>
+							<td>19ismael78petersen28</td>
+						</tr>
+						<!--<tr>
+							<th>Paginaci&oacute;n</th>
+						</tr>-->
+					</tbody>
+				</table> <!-- /Fin de #usuarios -->
+			</div> <!-- /Fin de #contenedorTabla -->
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+				<button id="nuevasFilas">10 Nuevas filas</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<!-- ==================================================+
+				 | Menu de la Tabla Usuarios
+				 ==================================================+ -->
+			<ul id="menuTabla" style="display: none;">
+				<li class="ui-menu-label">Filas con/sin selecci&oacute;n:</li>
+				<li><a href="#row-selected">Seleccionados <span id="quantitySelected">(0)</span></a></li>
+				<li><a href="#row-unselected">No Seleccionados <span id="quantityUnselected">(4)</span></a></li>
+				<li class="ui-menu-label">Acciones:</li>
+				<li><a href="#selectall">Seleccionar todo</a></li>
+				<li><a href="#agregar">Agregar</a></li>
+				<li><a href="#eliminar">Eliminar</a></li>
+				<li class="ui-menu-label">Columnas a mostrar:</li>
+				<li>
+					<a href="#nombre">
+						<input type="checkbox" name="checkbox-nombre" id="checkbox-nombre" value="checkbox-nombre" />
+						<label for="checkbox-nombre">Nombre</label>
+					</a>
+				</li>
+				<li>
+					<a href="#email">
+						<input type="checkbox" name="checkbox-email" id="checkbox-email" value="checkbox-email" />
+						<label for="checkbox-email">Email</label>
+					</a>
+				</li>
+				<li>
+					<a href="#password">
+						<input type="checkbox" name="checkbox-password" id="checkbox-password" value="checkbox-password" />
+						<label for="checkbox-password">Contrase&ntilde;a</label>
+					</a>
+				</li>
+			</ul> <!-- /Fin de #menuTabla -->
+			
+			<!-- ==================================================+
+				 | Dialogo con formulario para editar o agregar filas
+				 ==================================================+ -->
+			<div id="dialog-form" title="Crear nuevo usuario">
+				<p class="validateTips">Todos los campos del formulario son requeridos.</p>
+
+				<form>
+					<fieldset>
+						<label for="name">Nombre</label>
+						<input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+						<label for="email">Email</label>
+						<input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all" />
+						<label for="password">Contrase&ntilde;a</label>
+						<input type="password" name="password" id="password" value="" class="text ui-widget-content ui-corner-all" />
+					</fieldset>
+				</form>
+			</div> <!-- /Fin de #dialog-form -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

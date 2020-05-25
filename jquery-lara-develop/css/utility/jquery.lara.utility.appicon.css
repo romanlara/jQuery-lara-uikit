@@ -1,0 +1,32 @@
+/* ====================================================================+
+ * File name      : jquery.lara.utility.appicon.css
+ * Beginning      : 2012-Mar-21
+ * Last modified  : 2012-Mar-21
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.utility.appicon.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.utility.appicon.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-utility-appicon {  }

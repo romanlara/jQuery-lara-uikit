@@ -1,0 +1,230 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>checkdialog</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-12-30 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : checkdialog.html
+			Comienzo	 	   : 2011-Dic-30
+			Ultima Modificacion: 2012-Ene-04
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un temporizador.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue-2/jquery-ui-1.8.20.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+			.notas { width: 40%; font-size: 1.1em; }
+			#log { margin: 0.4em; width: 20%; height: 100px; border: 1px solid #000000; overflow: auto; }
+			
+			.ui-checkdialog { box-shadow: 2px 2px 5px -2px rgba(0, 0, 0, 0.5); }
+			.ui-checkdialog-content { text-align: justify; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.checkdialog.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.ui.checkdialog.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function createCheckdialogs() {
+					$("#checkdialog").checkdialog({
+						width: 210,
+						modal: true,
+						show: "fade",
+						hide: "clip",
+						//title: "Error de Sistema",
+						//message: "Est&aacute; usted experimentando una falla en su sistema. ¿Quiere concluir con el proceso?",
+						buttons: {
+							"Sí": function() {
+								$("#log").children("div").append('<span style="display: block;">Se puls&oacute; S&iacute;</span>');
+								height = $("#log").children("div").height();
+								positionPixels = 100 / 100 * height;
+								$("#log").scrollTop(positionPixels);
+								$("#log div span:odd").css("background-color", "#eee");
+								
+								$("#checkdialog").checkdialog("close");
+							},
+							"No": function() {
+								$("#log").children("div").append('<span style="display: block;">Se puls&oacute; No</span>');
+								height = $("#log").children("div").height();
+								positionPixels = 100 / 100 * height;
+								$("#log").scrollTop(positionPixels);
+								$("#log div span:odd").css("background-color", "#eee");
+								
+								$("#checkdialog").checkdialog("close");
+							}
+						},
+						preopen: function(event, ui) {
+							$("#checkdialog #acc").accordion({ active: false, autoHeight: false });
+						}
+					});
+					
+					$("#carga").checkdialog({
+						autoOpen: false,
+						modal: true,
+						show: "fade",
+						hide: "fade",
+						icon: "",
+						title: "",
+						//message: "<center><img src='ajax-loader-2.gif' /><br>Espere un momento, por favor.</center>",
+						preclose: function(event, ui) {
+							$("#log").children("div").append("<span style='display: block;'>El proceso concluy&oacute;</span>");
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+						}
+					});
+				}
+				
+				createCheckdialogs();
+				
+				$("h1 span").text($("#checkdialog").data("checkdialog").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":ui-checkdialog").checkdialog("destroy");
+				}, function(event) {
+					createCheckdialogs();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":ui-checkdialog").checkdialog("disable");
+				}, function(event) {
+					$(":ui-checkdialog").checkdialog("enable");
+				});
+				
+				// -------------------------------------------------------------------
+				$("#mostrar").button().click(function() {
+					$("#checkdialog").checkdialog("open");
+				});
+				$("#m-original").button().click(function() {
+					var msg = "Est&aacute; usted experimentando una falla en su sistema. ¿Quiere concluir con el proceso?";
+					
+					//$("#checkdialog").checkdialog("message", msg);
+					$("#checkdialog").html(msg);
+					$("#checkdialog").checkdialog("option", "icon", "ui-icon-help");
+					$("#checkdialog").checkdialog("option", "title", "Error de Sistema");
+					$("#checkdialog").checkdialog("option", "width", 210);
+					$("#checkdialog").checkdialog("option", "buttons", {
+						"Sí": function() {
+							$("#log").children("div").append('<span style="display: block;">Se puls&oacute; S&iacute;</span>');
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+							
+							$("#checkdialog").checkdialog("close");
+						},
+						"No": function() {
+							$("#log").children("div").append('<span style="display: block;">Se puls&oacute; No</span>');
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+							
+							$("#checkdialog").checkdialog("close");
+						}
+					});
+				});
+				$("#m-info").button().click(function() {
+					var msg = "Este es otro mensaje m&aacute;s largo que el original. " +
+							  "Simplemente se comprueba que el dialogo puede " +
+							  "adaptarse a cualquier tama&ntilde;o de mensaje en tiempo de ejecuci&oacute;n. <br><br>" +
+							  "<div id='acc'><h3><a href='#'>Nota:</a></h3><div>Est&eacute; acorde&oacute;n comprueba que puede el dialogo adaptarse a cualquier tama&ntilde;o en lo alto tomando en cuenta el tiempo de ejecuci&oacute;n.</div></div>";
+					
+					//$("#checkdialog").checkdialog("message", msg);
+					$("#checkdialog").html(msg);
+					$("#checkdialog").checkdialog("option", "icon", "ui-icon-info");
+					$("#checkdialog").checkdialog("option", "title", "Informaci&oacute;n");
+					$("#checkdialog").checkdialog("option", "width", 300);
+					$("#checkdialog").checkdialog("option", "buttons", {
+						"Aceptar": function() {
+							$("#log").children("div").append('<span style="display: block;">Se puls&oacute; Aceptar</span>');
+							height = $("#log").children("div").height();
+							positionPixels = 100 / 100 * height;
+							$("#log").scrollTop(positionPixels);
+							$("#log div span:odd").css("background-color", "#eee");
+							
+							$("#checkdialog").checkdialog("close");
+							$("#checkdialog #acc").accordion("destroy");
+						}
+					});
+				});
+				$("#m-carga").button().click(function() {
+					$("#carga").checkdialog("open");
+					setTimeout(function() { $("#carga").checkdialog("close"); }, 3000);
+				});
+				$("#iconTtitle").button().toggle(function(){
+					$("#carga").checkdialog("option", "icon", "ui-icon-clock");
+					$("#carga").checkdialog("option", "title", "Cargando");
+				}, function() {
+					$("#carga").checkdialog("option", "icon", "");
+					$("#carga").checkdialog("option", "title", "");
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Dialogo de Confirmaci&oacute;n (jquery.lara.ui.checkdialog.js) v<span></span></h1>
+			
+			<div id="checkdialog" title="Error de Sistema">
+				Est&aacute; usted experimentando una falla en su sistema. ¿Quiere concluir con el proceso?
+			</div>
+			<div id="carga">
+				<center><img src='ajax-loader-2.gif' /><br>Espere un momento, por favor.</center>
+			</div>
+			
+			<p class="ui-widget">Log:</p>
+			<div id="log" class="ui-widget"><div></div></div>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+				<button id="mostrar">Mostrar</button>
+				<button id="m-original">Mensaje Original</button>
+				<button id="m-info">Mensaje Informativo</button>
+				<button id="m-carga">Mensaje de Carga</button>
+				<button id="iconTtitle">Agregar | Quitar icono y titulo</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,48 @@
+/* ====================================================================+
+ * File name      : jquery.lara.utility.colorpicker.css
+ * Beginning      : 2012-May-29
+ * Last modified  : 2012-May-29
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 0.0.0
+ * version widget : 0.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.utility.colorpicker.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.utility.colorpicker.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-utility-colorpicker { margin: 0; padding: 0.4em; width: 250px; }
+
+.ui-utility-colorpicker .ui-utility-colorpicker-titlebar { margin: 0; padding: 0.4em;  }
+.ui-utility-colorpicker .ui-utility-colorpicker-titlebar .ui-icon { float: left; margin: -2px 5px 0 0; }
+
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-red,
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-green,
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-blue { float: left; clear: left; width: 100px; margin: 15px; }
+
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-red .ui-slider-range { background: #ef2929; }
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-red .ui-slider-handle { border-color: #ef2929; }
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-green .ui-slider-range { background: #8ae234; }
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-green .ui-slider-handle { border-color: #8ae234; }
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-blue .ui-slider-range { background: #729fcf; }
+.ui-utility-colorpicker .ui-utility-colorpicker-slider-blue .ui-slider-handle { border-color: #729fcf; }
+
+.ui-utility-colorpicker .ui-utility-colorpicker-swatch { width: 100px; height: 100px; margin-top: 18px; margin-left: 148px; background-image: none; }

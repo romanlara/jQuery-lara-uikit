@@ -1,0 +1,551 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Asignaci&oacute;n de Tareas</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2011-11-04 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : asignaciontareas.html
+			Comienzo	 	   : 2011-Nov-04
+			Ultima Modificacion: 2011-Nov-04
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un menu con tareas asignadas.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!--
+		<script type="text/javascript" src="http://ui.jquery.com/applications/themeroller/themeswitchertool/"></script>
+		<script type="text/javascript"> $(function(){ $('<div style="position: absolute; top: 100px; right: 29px;" />').appendTo('body').themeswitcher(); }); </script>
+		-->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			.ui-dialog { /*box-shadow: 2px 7px 10px #aaa;*/ box-shadow: 3px 3px 5px -1px rgba(0, 0, 0, 0.5); } /* Una sombra para los dialogos */
+			.igu-dialogo-manubarra { padding: 0.1em 0.1em 0 0.1em; } /* Para alinear las barras de menues que contenga. */
+			
+			button { margin: 0.4em; }
+			#logRotulo { margin-top: 20px; }
+			#log { margin: 0.4em; width: 50%; height: 100px; border: 1px solid #000000; overflow: auto; }
+			.notas { width: 40%; font-size: 1.1em; }
+		</style>
+		
+		<!-- ---------------------------------
+			 ## Estilos de menu y menubarra ##
+			 --------------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menuitem.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menu.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menubar.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.radiobutton.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.checkbox.css" />
+		
+		<!-- --------------------------------------
+			 ## Funcionalida de menu y menubarra ##
+			 -------------------------------------- -->
+		<script type="text/javascript" src="../../../../library/jquery-shortcut/jquery.shortcut.js"></script>
+		<script type="text/javascript" src="../menuitem/jquery.lara.ui.menuitem.js"></script>
+		<script type="text/javascript" src="../menu/jquery.lara.ui.menu.js"></script>
+		<script type="text/javascript" src="jquery.lara.ui.menubar.js"></script>
+		<script type="text/javascript" src="../radiobutton/jquery.lara.ui.radiobutton.js"></script>
+		<script type="text/javascript" src="../checkbox/jquery.lara.ui.checkbox.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			<!--
+			$(document).ready(function() {
+				// Establecemos los iconos para sus determinadas opciones de los menues.
+				// Menu App
+				var menuOpsApp = ["a[href^='#pref-servicios']"]; // > Preferencias de los Servicios
+				var iconOpsApp = ["ui-icon-gear"];
+				// Menu Archivo
+				var menuOpsArchivo = ["a[href^='#archivo-']", // > Nuevo > Archivo-...
+									  "a[href^='#guardar']",  // > ...
+									  "a[href='#imprimir']"];
+				var iconOpsArchivo = ["ui-icon-document", // > Nuevo > Archivo-... 
+								  	  "ui-icon-disk",     // > ...
+								  	  "ui-icon-print"];
+				// Menu Editar
+				var menuOpsEditar = ["a[href='#copiar']", // > copiar, cortar, pegar, borrar.
+									 "a[href='#cortar']",
+									 "a[href='#pegar']",
+									 "a[href='#borrar']" ];
+				var iconOpsEditar = ["ui-icon-copy",     // > copiar, cortar, pegar, borrar.
+								  	 "ui-icon-scissors",  
+								  	 "ui-icon-clipboard",
+								  	 "ui-icon-close"];   
+				// Menu Ver
+				var menuOpsVer = ["a[href='#subir']",  // > Mover > ...
+								  "a[href='#bajar']",
+								  "a[href='#izq']",
+								  "a[href='#der']",
+								  "a[href='#codificar']"];
+				var iconOpsVer = ["ui-icon-arrowthick-1-n",   // > Tamaño > ...
+								  "ui-icon-arrowthick-1-s",
+								  "ui-icon-arrowthick-1-w",
+								  "ui-icon-arrowthick-1-e",
+								  "ui-icon-script"];
+								  
+				// --------------------------------------------------------------
+				// Creamos el menu y, como inicializacion, establecemos los iconos para las opciones.
+				$("#menuApp").menu({
+					icons: {
+						menuItems: menuOpsApp,
+						iconsItems: iconOpsApp
+					}
+				});
+				// Creamos y establecemos una tarea que ejecutaran las opciones cuando ocurra el evento
+				// click o las teclas de acceso rapido.
+				$("#menuApp").find("a").menuitem({
+					parentMenu: "menuApp",
+					task: function(event, ui) {
+						$("#log").append('<span>' + ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+					}
+				});
+				// Establecemos las teclas de acceso rapido.
+				$("#menuApp a[href='#preferencias']").menuitem("shortcutkeys", "ctrl+alt+p", true);
+				$("#menuApp a[href='#pref-servicios']").menuitem("shortcutkeys", "alt+s", true)
+				$("#menuApp a[href='#salir']").menuitem("shortcutkeys", "ctrl+q", true);
+				
+				// --------------------------------------------------------------
+				// Creamos el menu y, como inicializacion, establecemos los iconos para las opciones.
+				$("#menuArchivo").menu({ 
+					icons: {
+						menuItems: menuOpsArchivo,
+						iconsItems: iconOpsArchivo
+					}
+				});
+				// Creamos y establecemos una tarea que ejecutaran las opciones cuando ocurra el evento
+				// click o las teclas de acceso rapido.
+				$("#menuArchivo").find("a").menuitem({
+					parentMenu: "menuArchivo",
+					task: function(event, ui) {
+						$("#log").append('<span>' + ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+					}
+				});
+				// Establecemos las teclas de acceso rapido.
+				$("#menuArchivo a[href='#nuevo']").menuitem("shortcutkeys", "ctrl+alt+n", true);
+				$("#menuArchivo a[href='#abrir']").menuitem("shortcutkeys", "ctrl+o", true);
+				$("#menuArchivo a[href='#cerrar']").menuitem("shortcutkeys", "ctrl+w", true);
+				$("#menuArchivo a[href='#cerrar-todo']").menuitem("shortcutkeys", "ctrl+shift+w", true);
+				$("#menuArchivo a[href='#guardar']").menuitem("shortcutkeys", "ctrl+s", true);
+				$("#menuArchivo a[href='#imprimir']").menuitem("shortcutkeys", "ctrl+p", true);
+				
+				// --------------------------------------------------------------
+				// Creamos el menu y, como inicializacion, establecemos los iconos para las opciones.
+				$("#menuEditar").menu({ 
+					icons: {
+						menuItems: menuOpsEditar,
+						iconsItems: iconOpsEditar
+					}
+				});
+				// Creamos y establecemos una tarea que ejecutaran las opciones cuando ocurra el evento
+				// click o las teclas de acceso rapido.
+				$("#menuEditar").find("a").menuitem({
+					parentMenu: "menuEditar",
+					task: function(event, ui) {
+						$("#log").append('<span>' + ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+					}
+				});
+				// Establecemos las teclas de acceso rapido.
+				$("#menuEditar a[href='#copiar']").menuitem("shortcutkeys", "ctrl+c", true);
+				$("#menuEditar a[href='#cortar']").menuitem("shortcutkeys", "ctrl+x", true);
+				$("#menuEditar a[href='#pegar']").menuitem("shortcutkeys", "ctrl+v", true);
+				$("#menuEditar a[href='#borrar']").menuitem("shortcutkeys", "backspace", true);
+				$("#menuEditar a[href='#slcc-todo']").menuitem("shortcutkeys", "ctrl+a", true);
+				
+				// --------------------------------------------------------------
+				// Creamos el menu y, como inicializacion, establecemos los iconos para las opciones.
+				$("#menuVer").menu({ 
+					icons: {
+						menuItems: menuOpsVer,
+						iconsItems: iconOpsVer
+					}
+				});
+				// Creamos y establecemos una tarea que ejecutaran las opciones cuando ocurra el evento
+				// click o las teclas de acceso rapido.
+				$("#menuVer").find("a").menuitem({
+					parentMenu: "menuVer",
+					task: function(event, ui) {
+						$("#log").append('<span>' + ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+					}
+				});
+				// Establecemos las teclas de acceso rapido.
+				$("#menuVer a[href='#pantalla-cmplt']").menuitem("shortcutkeys", "shift+ctrl+f", true);
+				$("#menuVer a[href='#detener']").menuitem("shortcutkeys", "ctrl+d", true);
+				$("#menuVer a[href='#recargar']").menuitem("shortcutkeys", "ctrl+r", true);
+				$("#menuVer a[href='#subir']").menuitem("shortcutkeys", "ctrl+up", true);
+				$("#menuVer a[href='#bajar']").menuitem("shortcutkeys", "ctrl+down", true);
+				$("#menuVer a[href='#izq']").menuitem("shortcutkeys", "ctrl+left", true);
+				$("#menuVer a[href='#der']").menuitem("shortcutkeys", "ctrl+right", true);
+				$("#menuVer a[href='#auto-detectar']").menuitem("shortcutkeys", "ctrl+a", true)
+				$("#menuVer a[href='#personalizar']").menuitem("shortcutkeys", "alt+p", true);
+				
+				// Creamos las opciones del Menu ver en radiobuttons.
+				$("#opciones-utf-8").find("input[type='radio']").radiobutton({ 
+					box: false,
+					selected: function(event, ui) {
+						$("#log").append('<span>' + 
+							ui.item.next("label")
+								.find(".ui-radiobutton-button .ui-radiobutton-text")
+								.text() + '-selected, </span>');
+					}
+				});
+				$("#radiobutton-8-2").radiobutton("select");
+				
+				// Creamos las opciones del Menu ver en checkboxes.
+				$("#opciones-utf-16").find("input[type='checkbox']").checkbox({ 
+					box: false,
+					selected: function(event, ui) {
+						$("#log").append('<span>' + 
+							ui.item.next("label")
+								.find(".ui-checkbox-button .ui-checkbox-text")
+								.text() + '-selected, </span>');
+					},
+					unselected: function(event, ui) {
+						$("#log").append('<span>' + 
+							ui.item.next("label")
+								.find(".ui-checkbox-button .ui-checkbox-text")
+								.text() + '-unselected, </span>');
+					}
+				});
+				$("#checkbox-16-1").checkbox("select");
+				
+				// --------------------------------------------------------------
+				// Instanciamos las Barras de Menu.
+				$("#menuBarra").menubar();
+				// Optenemos la version de la clase widget menubarra.
+				$("h1 span").text($("#menuBarra").data("menubar").version);
+				
+				// -------------------------------------------------------------------
+				// Instanciamos los Dialogos.
+				$('#dialogo').dialog({ 
+					autoOpen: false,
+					position: [350, 130],
+					//modal: true,
+					show: 'scale',
+					hide: 'scale',
+					buttons: {
+						'Ok': function() {
+							$(this).dialog('close');
+						}
+					}
+				});
+				
+				// -------------------------------------------------------------------
+				// Establecemos acciones a los botones.
+				$("#limpiar").button()
+					.click(function(event) {
+						$("#log").empty();
+					});
+				$("#inhabilitar").button()
+					.toggle(function(event) {
+						$("#menuArchivo a[href='#abrir']").menuitem("disable");
+						$("#menuArchivo a[href='#cerrar']").menuitem("disable");
+						$("#menuVer a[href='#subir']").menuitem("disable");
+						$("#menuVer a[href='#bajar']").menuitem("disable");
+						$("#menuVer a[href='#izq']").menuitem("disable");
+						$("#menuVer a[href='#der']").menuitem("disable");
+						// Inhabilitamos la siguiente opcion, y tambien por medio del checkbox.
+						$("#menuVer a[href='#opcion-16-3']").menuitem("disable");
+						$("#checkbox-16-3").checkbox("disable");
+						// Inhabilitamos la siguiente opcion, y tambien por medio del radiobutton.
+						$("#menuVer a[href='#opcion-8-3']").menuitem("disable");
+						$("#radiobutton-8-3").radiobutton("disable");
+					}, function(evnet) {
+						$("#menuArchivo a[href='#abrir']").menuitem("enable");
+						$("#menuArchivo a[href='#cerrar']").menuitem("enable");
+						$("#menuVer a[href='#subir']").menuitem("enable");
+						$("#menuVer a[href='#bajar']").menuitem("enable");
+						$("#menuVer a[href='#izq']").menuitem("enable");
+						$("#menuVer a[href='#der']").menuitem("enable");
+						// Inhabilitamos la siguiente opcion, y tambien por medio del checkbox.
+						$("#menuVer a[href='#opcion-16-3']").menuitem("enable");
+						$("#checkbox-16-3").checkbox("enable");
+						// Inhabilitamos la siguiente opcion, y tambien por medio del radiobutton.
+						$("#menuVer a[href='#opcion-8-3']").menuitem("enable");
+						$("#radiobutton-8-3").radiobutton("enable");
+					});
+				// Asignamos un shortcut al boton #limpiar.
+				shortcut.add("ctrl+l", function(event) {
+					$("#limpiar").trigger("click");
+				});
+				
+				// -------------------------------------------------------------------
+				// Reescribimos la tarea de algunas opciones de menu.
+				$("#menuArchivo").find("a[href='#abrir']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' +
+								 ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							abrir();
+						}
+					});
+				$("#menuArchivo").find("a[href='#cerrar']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' + 
+								ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							cerrar();
+						}
+					});
+				$("#menuVer").find("a[href='#subir']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' + 
+								ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							dplzarArriba();
+						}
+					});
+				$("#menuVer").find("a[href='#bajar']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' + 
+								ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							dplzarAbajo();
+						}
+					});
+				$("#menuVer").find("a[href='#izq']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' + 
+								ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							dplzarIzq();
+						}
+					});
+				$("#menuVer").find("a[href='#der']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' + 
+								ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							dplzarDer();
+						}
+					});
+				$("#menuApp").find("a[href='#acerca'], a[href='#preferencias'], a[href='#pref-servicios']")
+					.menuitem({
+						task: function(event, ui) {
+							$("#log").append('<span>' + 
+								ui.item.menuitem("option", "parentMenu") + ui.item.attr("href") + ', </span>');
+							abrir();
+						}
+					})
+				
+				// -------------------------------------------------------------------
+				// Funciones que utilizan las tareas de las opciones de menu.
+				function abrir() {
+					$(":ui-dialog").dialog("open");
+				}
+				function cerrar() {
+					$(":ui-dialog:visible").dialog("close");
+				}
+				function dplzarArriba() {
+					$(".ui-dialog").animate({top: "-=10"}, 100);
+				}
+				function dplzarAbajo() {
+					$(".ui-dialog").animate({top: "+=10"}, 100);
+				}
+				function dplzarIzq() {
+					$(".ui-dialog").animate({left: "-=10"}, 100);
+				}
+				function dplzarDer() {
+					$(".ui-dialog").animate({left: "+=10"}, 100);
+				}
+			});
+			//-->
+		</script>	
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Barra de Men&uacute; (jquery.lara.ui.menubar.js) v<span></span></h1>
+			
+			<!-- --------------------------------------------------------------------------- -->
+			<ul id="menuBarra">
+				<li><a href="#menuApp">App</a></li>
+				<li><a href="#menuArchivo">Archivo</a></li>
+				<li><a href="#menuEditar">Editar</a></li>
+				<li><a href="#menuVer">Ver</a></li>
+			</ul>
+			<!-- --------------------------------------------------------------------------- -->
+			<ul id="menuApp">
+				<li class="ui-menu-separator"><a href="#acerca">Acerca de App</a></li>
+				<li class="ui-menu-separator"><a href="#preferencias">Preferencias...</a></li>
+				<li class="ui-menu-separator">
+					<a href="#servicios">Servicios</a>
+					<ul>
+						<li><a href="#pref-servicios">Preferencias de los Servicios</a></li>
+					</ul>
+				</li>
+				<li><a href="#salir">Salir de App</a></li>
+			</ul>
+			<!-- --------------------------------------------------------------------------- -->
+			<ul id="menuArchivo">
+				<li>
+					<a href="#nuevo">Nuevo</a>
+					<ul>
+						<li><a href="#archivo-html">Archivo HTML</a></li>
+						<li><a href="#archivo-css">Archivo CSS</a></li>
+						<li><a href="#archivo-js">Archivo JavaScript</a></li>
+						<li><a href="#archivo-php">Archivo PHP</a></li>
+						<li><a href="#archivo-xml">Archivo XML</a></li>
+						<li><a href="#archivo-java">Archivo Java</a></li>
+						<li><a href="#archivo-c">Archivo C/C++</a></li>
+						<li><a href="#archivo-txt">Archivo Text</a></li>
+					</ul>
+				</li>
+				<li class="ui-menu-separator"><a href="#abrir">Abrir Archivo...</a></li>
+				<li><a href="#cerrar">Cerrar</a></li>
+				<li class="ui-menu-separator"><a href="#cerrar-todo">Cerrar Todo</a></li>
+				<li><a href="#guardar">Guardar</a></li>
+				<li class="ui-menu-separator"><a href="#guardar-como">Guardar Como...</a></li>
+				<li><a href="#imprimir">Imprimir</a></li>
+			</ul>
+			<!-- --------------------------------------------------------------------------- -->
+			<ul id="menuEditar">
+				<li><a href="#copiar">Copiar</a></li>
+				<li><a href="#cortar">Cortar</a></li>
+				<li class="ui-menu-separator"><a href="#pegar">Pegar</a></li>
+				<li><a href="#borrar">Borrar</a></li>
+				<li><a href="#slcc-todo">Seleccionar Todo</a></li>
+			</ul>
+			<!-- --------------------------------------------------------------------------- -->
+			<ul id="menuVer">
+				<li class="ui-menu-separator"><a href="#pantalla-cmplt">Pantalla Completa</a></li>
+				<li><a href="#detener">Detener</a></li>
+				<li class="ui-menu-separator"><a href="#recargar">Recargar</a></li>
+				<li>
+					<a href="#mover">Mover</a>
+					<ul>
+						<li><a href="#subir">Subir</a></li>
+						<li><a href="#bajar">Bajar</a></li>
+						<li><a href="#izq">Izquierda</a></li>
+						<li><a href="#der">Derecha</a></li>
+					</ul>
+				</li>
+				<li>
+					<a href="#codificar">Codificar</a>
+					<ul>
+						<li><a href="#auto-detectar">Auto-detectar</a></li>
+						<li>
+							<a href="#utf-8">UTF-8</a>
+							<ul id="opciones-utf-8">
+								<li>
+									<a href="#opcion-8-1">
+										<input type="radio" name="radiobutton-8" id="radiobutton-8-1" value="radiobutton-8-1" />
+										<label for="radiobutton-8-1">Opci&oacute;n 1</label>
+									</a>
+								</li>
+								<li>
+									<a href="#opcion-8-2">
+										<input type="radio" name="radiobutton-8" id="radiobutton-8-2" value="radiobutton-8-2" />
+										<label for="radiobutton-8-2">Opci&oacute;n 2</label>
+									</a>
+								</li>
+								<li>
+									<a href="#opcion-8-3">
+										<input type="radio" name="radiobutton-8" id="radiobutton-8-3" value="radiobutton-8-3" />
+										<label for="radiobutton-8-3">Opci&oacute;n 3</label>
+									</a>
+								</li>
+								<li>
+									<a href="#opcion-8-4">
+										<input type="radio" name="radiobutton-8" id="radiobutton-8-4" value="radiobutton-8-4" />
+										<label for="radiobutton-8-4">Opci&oacute;n 4</label>
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li>
+					  		<a href="#utf-16">UTF-16</a>
+				      		<ul id="opciones-utf-16">
+				         		<li>
+				         			<a href="#opcion-16-1">
+				         				<input type="checkbox" name="checkbox-16-1" id="checkbox-16-1" />
+										<label for="checkbox-16-1">Opci&oacute;n 1</label>
+				         			</a>
+				         		</li>
+				         		<li>
+				         			<a href="#opcion-16-2">
+				         				<input type="checkbox" name="checkbox-16-2" id="checkbox-16-2" />
+										<label for="checkbox-16-2">Opci&oacute;n 2</label>
+				         			</a>
+				         		</li>
+				         		<li>
+				         			<a href="#opcion-16-3">
+										<input type="checkbox" name="checkbox-16-3" id="checkbox-16-3" />
+										<label for="checkbox-16-3">Opci&oacute;n 3</label>
+									</a>
+				         		</li>
+				         		<li>
+				         			<a href="#opcion-16-4">
+				         				<input type="checkbox" name="checkbox-16-4" id="checkbox-16-4" />
+										<label for="checkbox-16-4">Opci&oacute;n 4</label>
+				         			</a>
+				         		</li>
+				      		</ul>
+				   		</li>
+					</ul>
+				</li>
+				<li><a href="#personalizar">Personalizar...</a></li>
+			</ul>
+			
+			<p class="notas">
+				Pruebe con cualquier opci&oacute;n de la barra de men&uacute; de arriba y, observe en el log 
+				la informaci&oacute;n enviada. No olvide probar las teclas de acceso r&aacute;pido.
+			</p>
+			<p class="notas">
+				El bot&oacute;n &quot;Inhabilitar | Habilitar&quot;, activa y desactiva las opciones: 
+				Abrir Archivo, Cerrar, Subir, Bajar, Derecha e Izquierda, tambi&eacute;n la opci&oacute;n 3
+				de las opciones UTF 8 y UTF 16 del men&uacute; Ver. 
+			</p>
+			<p class="notas">
+				El bot&oacute;n Limpiar Log, borra todo el contenido de informacion mostrada en &eacute;l.
+				Puede utilizar la tecla de acceso r&aacute;pido <span class="ui-state-highlight">CTRL+L</span> para realizar esa acci&oacute;n.
+			</p>
+			<p class="notas">
+				La caja de texto de aqu&iacute; abajo, sirve para comprobar que cuando un input tiene el foco,
+				todas o algunas de las teclas de acceso r&aacute;pido quedan inhabilitadas. Por ejemplo, las teclas
+				de acceso de la barra de men&uacute;, se inhabilitan cuando este input tiene el foco, pero no para la
+				tecla de acceso r&aacute;pido <span class="ui-state-highlight">CTRL+L</span> que limpia el Log.
+			</p>
+			
+			<input type="text" name="entradas" />
+			
+			<!-- --------------------------------------------------------------------------- -->
+			<!-- Dialogos -->
+			<div id="dialogo" title="Ventana">
+				<!-- Contenido del dialogo. -->
+				<p>En jQuery tenemos diversas formas de capturar eventos de los elementos del DOM.</p>
+			</div>
+			
+			<!-- --------------------------------------------------------------------------- -->
+			<p id="logRotulo" class="ui-widget">Log:</p>
+			<div id="log" class="ui-widget"></div>
+			
+			<button id="limpiar">Limpiar Log</button>
+			<button id="inhabilitar">Inhabilitar | Habilitar</button>
+			<input type="checkbox" name="checkbox" value="checkbox" />
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DEMO</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>combobox</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2012-01-26 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : checkdialog.html
+			Comienzo	 	   : 2011-Dic-30
+			Ultima Modificacion: 2012-Ene-04
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un temporizador.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.9.2.custom/css/street-blue/jquery-ui-1.9.2.custom.min.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.9.2.custom/js/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.9.2.custom/js/jquery-ui-1.9.2.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; }
+		</style>
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.combobox.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.ui.combobox.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			<!--
+			$(document).ready(function() {
+				$("#combobox").combobox();
+				
+				$("h1 span").text($("#combobox").data("combobox").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":ui-combobox").combobox("destroy");
+				}, function(event) {
+					//$("#combobox").data("combobox")._create();
+					$("#combobox").combobox();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":ui-combobox").combobox("disable");
+				}, function(event) {
+					$(":ui-combobox").combobox("enable");
+				});
+			});
+			//-->
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Combobox (jquery.lara.ui.combobox.js) v<span></span></h1>
+			
+			<select id="combobox">
+				<option value="">Select one...</option>
+				<option value="ActionScript">ActionScript</option>
+				<option value="AppleScript">AppleScript</option>
+				<option value="Asp">Asp</option>
+				<option value="BASIC">BASIC</option>
+				<option value="C">C</option>
+				<option value="C++">C++</option>
+				<option value="Clojure">Clojure</option>
+				<option value="COBOL">COBOL</option>
+				<option value="ColdFusion">ColdFusion</option>
+				<option value="Erlang">Erlang</option>
+				<option value="Fortran">Fortran</option>
+				<option value="Groovy">Groovy</option>
+				<option value="Haskell">Haskell</option>
+				<option value="Java">Java</option>
+				<option value="JavaScript">JavaScript</option>
+				<option value="Lisp">Lisp</option>
+				<option value="Perl">Perl</option>
+				<option value="PHP">PHP</option>
+				<option value="Python">Python</option>
+				<option value="Ruby">Ruby</option>
+				<option value="Scala">Scala</option>
+				<option value="Scheme">Scheme</option>
+			</select>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

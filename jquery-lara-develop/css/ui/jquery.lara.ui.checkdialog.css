@@ -1,0 +1,44 @@
+/* ====================================================================+
+ * File name      : jquery.lara.ui.checkdialog.css
+ * Beginning      : 2011-Dic-11
+ * Last modified  : 2012-Mar-28
+ * 
+ * Author         : Lara E.M.S. Roman
+ * version lib    : 1.0.0
+ * version widget : 1.0.0
+ * 
+ * Description    : Codigo grafico para jquery.lara.ui.checkdialog.js
+ * ====================================================================+
+ */
+
+/*
+ * js file depends:
+ * 	jQuery:
+ *    none
+ * 
+ *  Aperos-Lara:
+ *    jquery.lara.ui.checkdialog.js
+ * 
+ * --------------------------------------+
+ * 
+ * css file depends:
+ *   jQuery:
+ *     jquery-ui.css (custom)
+ * 
+ *   Aperos-Lara:
+ *     none
+ */
+
+.ui-checkdialog { padding: 0; position: absolute; display: inline-block; border-width: 0px; z-index: 1000; }
+
+.ui-checkdialog .ui-checkdialog-titlebar { padding: 0.4em 0.5em; /*display: inline-block; position: absolute; float: left;*/ border-width: 3px 3px 1px 3px; }
+.ui-checkdialog .ui-checkdialog-icon { margin-top: -2px; left: 0.5em; position: absolute; }
+.ui-checkdialog .ui-checkdialog-titlebar .ui-checkdialog-title { margin-left: 1.4em; display: block; text-decoration: none; /*position: relative; /*line-height: 2px; top: -3px;*/ }
+.ui-checkdialog .ui-checkdialog-wrap-content { /*margin-left: 2.8em; display: inline-block; position: static; float: right;*/ border-width: 0px 3px 3px 3px; }
+.ui-checkdialog .ui-checkdialog-content { margin: 0; padding: 0.7em 0.7em 0 0.7em; display: block; }
+
+.ui-checkdialog .ui-checkdialog-buttonpane { margin: 0; padding: 0.22em 10px; display: block; }
+.ui-checkdialog .ui-checkdialog-buttonpane .ui-checkdialog-buttonset { text-align: center; }
+.ui-checkdialog .ui-checkdialog-buttonpane .ui-checkdialog-buttonset button { margin: 0.5em 0.4em 0.5em 0; }
+
+.ui-widget-overlay { z-index: 2; }

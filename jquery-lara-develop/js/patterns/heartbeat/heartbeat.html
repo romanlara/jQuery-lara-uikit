@@ -1,0 +1,123 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>heartbeat</title>
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<!-- Date: 2012-02-11 -->
+		<!--
+			================================================================+
+			Nombre del Archivo : checkdialog.html
+			Comienzo	 	   : 2011-Dic-30
+			Ultima Modificacion: 2012-Ene-04
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un temporizador.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.18/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.18/css/street-blue/jquery-ui-1.8.16.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.18/js/jquery-1.7.1.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.18/js/jquery-ui-1.8.18.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		
+		<!-- ----------------------------
+			 ## Estilos de la interfaz ##
+			 ---------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.notelog.css" />
+		
+		<!-- ----------------------------------
+			 ## Funcionalidad de la interfaz ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="jquery.lara.patterns.heartbeat.js"></script>
+		<script type="text/javascript" src="../../utility/notelog/jquery.lara.utility.notelog.js"></script>
+		
+		<!-- -------------------------------
+			 ## Ejecucion de los archivos ##
+			 ------------------------------- -->
+		<script type="text/javascript">
+			<!--
+			$(document).ready(function() {
+				$("#heartbeat").heartbeat({
+					url: "heartbeat.php",
+					delay: 1000
+				});
+				
+				$("#log").notelog({
+					height: "100px",
+					timeFormat: "[hh]:[mm]:[ss]",
+					dateFormat: "[yy]/[mm]/[dd]",
+					messageFormat: "({date}-{time}) {scope}: {msg}",
+					militaryTime: true
+				});
+				
+				$("h1 span").text($("#heartbeat").data("heartbeat").version);
+				
+				// -------------------------------------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$("#heartbeat").heartbeat("destroy");
+				}, function(event) {
+					$("#heartbeat").data("heartbeat")._create();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":patterns-heartbeat").heartbeat("disable");
+				}, function(event) {
+					$(":patterns-heartbeat").heartbeat("enable");
+				});
+				
+				$("#peticion").button().click(function(event) {
+					$("#log").notelog("addLog", "Usuario", "Inicia una petici&oacute;n");
+					
+					$.ajax({
+						url: "heartbeat.php",
+						success: function() {
+							$("#log").notelog("addLog", "Usuario", "Concluye su petici&oacute;n");
+						}
+					});
+				});
+				
+				$("#detener").button().click(function(event) {
+					$("#heartbeat").heartbeat("stop"); 
+				})
+			});
+			//-->
+		</script>
+	</head>
+	<body>
+		<div class="contenedor">
+			<h1 class="ui-widget-header ui-corner-all">Latido de Coraz&oacute;n (jquery.lara.design.heartbeat.js) v<span></span></h1>
+			
+			<div id="heartbeat"></div>
+			
+			<p class="ui-widget">Log:</p>
+			<div id="log"></div>
+			
+			<!-- ==================================================+
+				 | Panel de botones especiales para la tabla
+				 ==================================================+ -->
+			<div id="panelBotones">
+				<button id="destruir">Destruir | Crear</button>
+				<button id="inhabilitar">Inhabilitar | Habilitar</button>
+				<button id="peticion">Petici&oacute;n</button>
+				<button id="detener">Detener</button>
+			</div> <!-- /Fin de #panelBotones -->
+			
+			<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+		</div>
+	</body>
+</html>

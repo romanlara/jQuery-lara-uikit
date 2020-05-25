@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame
+		Remove this if you use the .htaccess -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<title>menubar</title>
+		<meta name="description" content="" />
+		<meta name="author" content="Lara E.M.S. Roman" />
+		<meta name="viewport" content="width=device-width; initial-scale=1.0" />
+		<!-- Replace favicon.ico & apple-touch-icon.png in the root of your domain and delete these references -->
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+		<!--
+			================================================================+
+			Nombre del Archivo : menus.html
+			Comienzo	 	   : 2012-Abr-13
+			Ultima Modificacion: 2012-Abr-13
+			
+			Autor			   : Lara E.M.S. Roman
+			
+			Descripcion		   : Un ejemplo de un menu.
+			================================================================+
+		-->
+		
+		<!-- =======================
+			 ### Libreias jQuery ###
+			 ======================= -->
+		<!--
+		<link type="text/css" rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20/themes/ui-lightness/jquery-ui.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.20/jquery-ui.min.js"></script>
+		-->
+		<link type="text/css" rel="stylesheet" href="../../../../library/jquery-ui-1.8.20/css/mac-blue/jquery-ui-1.8.20.custom.css" />
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-ui-1.8.20/js/jquery-ui-1.8.20.custom.min.js"></script>
+		
+		<!-- ---------------------------------------------------------------------------------------------------------- -->
+		
+		<!-- -------------------------
+			 ## Esdilos del ejemplo ##
+			 ------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/examples/general.css" />
+		<style type="text/css">
+			#panelBotones { margin-top: 20px; padding: 0.1em 0.4em 0.4em; }
+			#menuArchivo, #menuEditar, #menuVer { width: 20%; }
+		</style>
+		
+		<!-- -----------------------------
+			 ## Estilos de botonCasilla ##
+			 ----------------------------- -->
+		<link type="text/css" rel="stylesheet" href="../../../css/utility/jquery.lara.utility.notelog.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.checkbox.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.radiobutton.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menubar.css" />
+		<link type="text/css" rel="stylesheet" href="../../../css/ui/jquery.lara.ui.menu.css" />
+		<!-- ----------------------------------
+			 ## Funcionalida de botonCasilla ##
+			 ---------------------------------- -->
+		<script type="text/javascript" src="../../utility/notelog/jquery.lara.utility.notelog.js"></script>
+		<script type="text/javascript" src="../../../../library/jquery-shortcut/jquery.shortcut.js"></script>
+		<script type="text/javascript" src="../checkbox/jquery.lara.ui.checkbox.js"></script>
+		<script type="text/javascript" src="../radiobutton/jquery.lara.ui.radiobutton.js"></script>
+		<script type="text/javascript" src="jquery.lara.ui.menubar.js"></script>
+		<script type="text/javascript" src="../menu/jquery.lara.ui.menu.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				function create() {
+					// Instanciamos los preparativos para el ejemplo.
+					$("#log").notelog({
+						height: "100px",
+						timeFormat: "[hh]:[mm]:[ss]",
+						dateFormat: "[yy]/[mm]/[dd]",
+						messageFormat: "({date}-{time}) {scope}: {msg}",
+						militaryTime: true
+					});
+					
+					// Instanciamos los menues
+					$("#menuArchivo").menu();
+					$("#menuEditar").menu();
+					$("#menuVer").menu();
+					
+					// Asignamos a cientas opciones de los menues un icono.
+					$("#menuArchivo").menu("addIcon", "#archivo-html", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-css", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-js", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-php", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-xml", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-java", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-c", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#archivo-txt", "ui-icon-document");
+					$("#menuArchivo").menu("addIcon", "#guardar", "ui-icon-disk");
+					$("#menuArchivo").menu("addIcon", "#guardar-como", "ui-icon-disk");
+					$("#menuArchivo").menu("addIcon", "#imprimir", "ui-icon-print");
+					
+					$("#menuEditar").menu("addIcon", "#copiar", "ui-icon-copy");
+					$("#menuEditar").menu("addIcon", "#cortar", "ui-icon-scissors");
+					$("#menuEditar").menu("addIcon", "#pegar", "ui-icon-clipboard");
+					$("#menuEditar").menu("addIcon", "#borrar", "ui-icon-close");
+					
+					$("#menuVer").menu("addIcon", "#aumentar", "ui-icon-plus");
+					$("#menuVer").menu("addIcon", "#reducir", "ui-icon-minus");
+					$("#menuVer").menu("addIcon", "#codificar", "ui-icon-script");
+					
+					// Asignamos a cietas opciones de los menues un grupo de teclas de acceso rápido.
+					$("#menuArchivo").menu("addShortcutkey", "#nuevo", "ctrl+alt+n", false);
+					$("#menuArchivo").menu("addShortcutkey", "#abrir", "ctrl+o", false);
+					$("#menuArchivo").menu("addShortcutkey", "#cerrar", "ctrl+w", false);
+					$("#menuArchivo").menu("addShortcutkey", "#cerrar-todo", "ctrl+shift+w", false);
+					$("#menuArchivo").menu("addShortcutkey", "#guardar", "ctrl+s", false);
+					$("#menuArchivo").menu("addShortcutkey", "#imprimir", "ctrl+p", false);
+					
+					$("#menuEditar").menu("addShortcutkey", "#copiar", "ctrl+c", false);
+					$("#menuEditar").menu("addShortcutkey", "#cortar", "ctrl+x", false);
+					$("#menuEditar").menu("addShortcutkey", "#pegar", "ctrl+v", false);
+					$("#menuEditar").menu("addShortcutkey", "#borrar", "backspace", false);
+					$("#menuEditar").menu("addShortcutkey", "#slcc-todo", "ctrl+a", false);
+					
+					$("#menuVer").menu("addShortcutkey", "#pantalla-cmplt", "shift+ctrl+f", false);
+					$("#menuVer").menu("addShortcutkey", "#detener", "ctrl+d", false);
+					$("#menuVer").menu("addShortcutkey", "#recargar", "ctrl+r", false);
+					$("#menuVer").menu("addShortcutkey", "#aumentar", "ctrl+up", false);
+					$("#menuVer").menu("addShortcutkey", "#reducir", "ctrl+down", false);
+					$("#menuVer").menu("addShortcutkey", "#personalizar", "alt+p", false);
+					
+					$("#menuArchivo")
+						.find("a[href^='#']")
+						.click(function(event) {
+							if ($(this).is(".ui-state-disabled")) { return; }
+							event.preventDefault();
+							$("#log").notelog("addLog", "Usuario", "Di&oacute; click en " + $(this).attr("href"));
+						});
+					$("#menuEditar")
+						.find("a[href^='#']")
+						.click(function(event) {
+							if ($(this).is(".ui-state-disabled")) { return; }
+							event.preventDefault();
+							$("#log").notelog("addLog", "Usuario", "Di&oacute; click en " + $(this).attr("href"));
+						});
+					$("#menuVer")
+						.find("a[href^='#pantalla-cmplt'], a[href^='#detener'], a[href^='#recargar'], a[href^='#tamagno']," +
+							   "a[href^='#aumentar'], a[href^='#reducir'], a[href^='#codificar'], a[href^='#auto-detectar']," +
+							   "a[href^='#personalizar']")
+						.click(function(event) {
+							if ($(this).is(".ui-state-disabled")) { return; }
+							event.preventDefault();
+							$("#log").notelog("addLog", "Usuario", "Di&oacute; click en " + $(this).attr("href"));
+						});
+					
+					// Creamos las opciones del Menu ver en radiobuttons.
+					$("#opciones-utf-8").find("input[type='radio']").radiobutton({ 
+						box: false,
+						selected: function(event, ui) {
+							$("#log").notelog("addLog", "Usuario", "Di&oacute; click en " + $(this).attr("href") + "-selected");
+						} 
+					});
+					$("#radiobutton-8-2").radiobutton("select");
+					
+					// Creamos las opciones del Menu ver en checkboxes.
+					$("#opciones-utf-16").find("input[type='checkbox']").checkbox({ 
+						box: false,
+						selected: function(event, ui) {
+							$("#log").notelog("addLog", "Usuario", "Di&oacute; click en " + $(this).attr("href") + "-selected");
+						},
+						unselected: function(event, ui) {
+							$("#log").notelog("addLog", "Usuario", "Di&oacute; click en " + $(this).attr("href") + "-unselected");
+						}
+					});
+					$("#checkbox-16-1").checkbox("select");
+					
+					$("#menuBarra").menubar();
+				}
+				
+				create();
+				
+				$("h1 span").text($("#menuBarra").data("menubar").version);
+				
+				// ----------------------------------------
+				$("#destruir").button().toggle(function(event) {
+					$(":utility-notelog").notelog("destroy");
+					$(":ui-menu").menu("destroy");
+					$(":ui-menubar").menubar("destroy");
+					$(":ui-checkbox").checkbox("destroy");
+					$(":ui-radiobutton").radiobutton("destroy");
+				}, function(event) {
+					create();
+				});
+				$("#inhabilitar").button().toggle(function(event) {
+					$(":ui-menu").menu("disableItem", "#cerrar");
+					$(":ui-menu").menu("disableItem", "#detener");
+				}, function(event) {
+					$(":ui-menu").menu("enableItem", "#cerrar");
+					$(":ui-menu").menu("enableItem", "#detener");
+				});
+				$("#inhabilitarItem").button().toggle(function(event) {
+					$("#menuArchivo").menu("disableItem", "#cerrar");
+				}, function(event) {
+					$("#menuArchivo").menu("enableItem", "#cerrar");
+				});
+				$("#scrolling").button().toggle(function(event) {
+					$("#menuEditar").menu("option", "scrolling", { scroll: true, height: 40 });
+				}, function(event) {
+					$("#menuEditar").menu("option", "scrolling", { scroll: false, height: "" });
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="interface">
+			<header>
+				<h1 class="ui-widget-header ui-corner-all">Barra de Men&uacute; (jquery.lara.ui.menubar.js) v<span></span></h1>
+			</header>
+			<div class="contenedor">
+				<!-- --------------------------------------------------------------------------- -->
+				<ul id="menuBarra">
+					<li><a href="#menuArchivo">Archivo</a></li>
+					<li><a href="#menuEditar">Editar</a></li>
+					<li><a href="#menuVer">Ver</a></li>
+				</ul>
+				<!-- --------------------------------------------------------------------------- -->
+				<ul id="menuArchivo">
+					<li>
+						<a href="#nuevo">Nuevo</a>
+						<ul>
+							<li><a href="#archivo-html">Archivo HTML</a></li>
+							<li><a href="#archivo-css">Archivo CSS</a></li>
+							<li><a href="#archivo-js">Archivo JavaScript</a></li>
+							<li><a href="#archivo-php">Archivo PHP</a></li>
+							<li><a href="#archivo-xml">Archivo XML</a></li>
+							<li><a href="#archivo-java">Archivo Java</a></li>
+							<li><a href="#archivo-c">Archivo C/C++</a></li>
+							<li><a href="#archivo-txt">Archivo Text</a></li>
+						</ul>
+					</li>
+					<li class="ui-menu-separator"><a href="#abrir">Abrir Archivo...</a></li>
+					<li><a href="#cerrar">Cerrar</a></li>
+					<li class="ui-menu-separator"><a href="#cerrar-todo">Cerrar Todo</a></li>
+					<li><a href="#guardar">Guardar</a></li>
+					<li class="ui-menu-separator"><a href="#guardar-como">Guardar Como...</a></li>
+					<li><a href="#imprimir">Imprimir</a></li>
+				</ul>
+				<!-- --------------------------------------------------------------------------- -->
+				<ul id="menuEditar">
+					<li><a href="#copiar">Copiar</a></li>
+					<li><a href="#cortar">Cortar</a></li>
+					<li class="ui-menu-separator"><a href="#pegar">Pegar</a></li>
+					<li><a href="#borrar">Borrar</a></li>
+					<li><a href="#slcc-todo">Seleccionar Todo</a></li>
+				</ul>
+				<!-- --------------------------------------------------------------------------- -->
+				<ul id="menuVer">
+					<li class="ui-menu-separator"><a href="#pantalla-cmplt">Pantalla Completa</a></li>
+					<li><a href="#detener">Detener</a></li>
+					<li class="ui-menu-separator"><a href="#recargar">Recargar</a></li>
+					<li>
+						<a href="#tamagno">Tama&ntilde;o</a>
+						<ul>
+							<li><a href="#aumentar">Aumentar</a></li>
+							<li><a href="#reducir">Reducir</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#codificar">Codificar</a>
+						<ul>
+							<li><a href="#auto-detectar">Auto-detectar</a></li>
+							<li>
+								<a href="#utf-8">UTF-8</a>
+								<ul id="opciones-utf-8">
+									<li>
+										<a href="#opcion-8-1">
+											<input type="radio" name="radiobutton-8" id="radiobutton-8-1" value="radiobutton-8-1" />
+											<label for="radiobutton-8-1">Opci&oacute;n 1</label>
+										</a>
+									</li>
+									<li>
+										<a href="#opcion-8-2">
+											<input type="radio" name="radiobutton-8" id="radiobutton-8-2" value="radiobutton-8-2" />
+											<label for="radiobutton-8-2">Opci&oacute;n 2</label>
+										</a>
+									</li>
+									<li>
+										<a href="#opcion-8-3">
+											<input type="radio" name="radiobutton-8" id="radiobutton-8-3" value="radiobutton-8-3" />
+											<label for="radiobutton-8-3">Opci&oacute;n 3</label>
+										</a>
+									</li>
+									<li>
+										<a href="#opcion-8-4">
+											<input type="radio" name="radiobutton-8" id="radiobutton-8-4" value="radiobutton-8-4" />
+											<label for="radiobutton-8-4">Opci&oacute;n 4</label>
+										</a>
+									</li>
+								</ul>
+							</li>
+							<li>
+					  			<a href="#utf-16">UTF-16</a>
+				      			<ul id="opciones-utf-16">
+				         			<li>
+				         				<a href="#opcion-16-1">
+				         					<input type="checkbox" name="checkbox-16-1" id="checkbox-16-1" />
+											<label for="checkbox-16-1">Opci&oacute;n 1</label>
+				         				</a>
+				         			</li>
+				         			<li>
+				         				<a href="#opcion-16-2">
+				         					<input type="checkbox" name="checkbox-16-2" id="checkbox-16-2" />
+											<label for="checkbox-16-2">Opci&oacute;n 2</label>
+				         				</a>
+				         			</li>
+				         			<li>
+				         				<a href="#opcion-16-3">
+											<input type="checkbox" name="checkbox-16-3" id="checkbox-16-3" />
+											<label for="checkbox-16-3">Opci&oacute;n 3</label>
+										</a>
+				         			</li>
+				         			<li>
+				         				<a href="#opcion-16-4">
+				         					<input type="checkbox" name="checkbox-16-4" id="checkbox-16-4" />
+											<label for="checkbox-16-4">Opci&oacute;n 4</label>
+				         				</a>
+				         			</li>
+				      			</ul>
+				   			</li>
+						</ul>
+					</li>
+					<li><a href="#personalizar">Personalizar...</a></li>
+				</ul>
+				
+				<p class="ui-widget">Log:</p>
+				<div id="log"></div>
+				
+				<!-- ==================================================+
+					 | Panel de botones especiales para la tabla
+					 ==================================================+ -->
+				<div id="panelBotones">
+					<button id="destruir">Destruir | Crear</button>
+					<button id="inhabilitar">Inhabilitar | Habilitar</button>
+					<button id="inhabilitarItem">Inhabilitar | Habilitar una opci&oacute;n</button>
+					<button id="scrolling">Scrolling</button>
+					<input type="checkbox" name="checkbox" value="checkbox" />
+					<label for="checkbox">Intenta seleccionarme</label>
+				</div> <!-- /Fin de #panelBotones -->
+			</div>
+			<footer>
+				<div class="aperos-demo-msn">APEROS-LARA: DESARROLLO - Lara E.M.S. Roman</div>
+			</footer>
+		</div>
+	</body>
+</html>

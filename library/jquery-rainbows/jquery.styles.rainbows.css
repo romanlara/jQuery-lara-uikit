@@ -1,0 +1,77 @@
+.rain.demo {}
+.sample {
+    background: none repeat scroll 0 0 #CCCCCC;
+    border-radius: 10px 10px 10px 10px;
+    margin: 0 0 14px;
+	padding: 35px 40px;
+}
+.red.sample {
+    background: none repeat scroll 0 0 #9E0B0F;
+}
+.sample .rainbows-shadow {
+    opacity: 0.7;
+}
+.inset.sample .rainbows-shadow {
+    color: #FFFFFF !important;
+    opacity: 0.7;
+}
+#three .rainbows-highlight {
+    color: #FFF79C !important;
+}
+#four .rainbows-highlight {
+    color: #FFFFFF !important;
+}
+#five .rainbows-highlight {
+    color: #A260C9 !important;
+}
+#five .rainbows-shadow {
+    opacity: 0.4;
+}
+.green.sample {
+    background: none repeat scroll 0 0 #3D8200;
+}
+.blue.sample {
+    background: none repeat scroll 0 0 #0062A9;
+}
+.orange.sample {
+    background: none repeat scroll 0 0 #FFB400;
+}
+.yellow.sample {
+    background: none repeat scroll 0 0 #FCE100;
+}
+.violet.sample {
+    background: none repeat scroll 0 0 #58008A;
+}
+.black.sample {
+    background: none repeat scroll 0 0 #333333;
+}
+#seven.sample h2 {
+    font-size: 36px;
+}
+#six .rainbows-highlight {
+    color: #EEEEEE !important;
+}
+#seven.sample .rainbows-highlight {
+    color: #9B0004 !important;
+}
+.silver.sample {
+    background: none repeat scroll 0 0 #BBBBBB;
+}
+.sample h2 {
+    font: 800 42px/1.2 "helvetica neue","lucida grande",verdana,sans-serif;
+}
+.sample h2 span {
+    vertical-align: top !important;
+}
+.serif.sample h2 {
+    font: oblique 400 42px/1.2 "georgia","times new roman",serif;
+}
+.thin.sample h2 {
+    font-weight: 300;
+}
+.comic.sample h2 {
+    font: 800 42px/1.25 "comic sans","comic sans ms","helvetica neue","lucida grande",verdana,sans-serif;
+}
+.comic.sample h2 * {
+    line-height: 1;
+}
